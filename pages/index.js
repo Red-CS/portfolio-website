@@ -2,6 +2,7 @@
 import Head from 'next/head'
 
 // Components
+import Header from "../src/components/Header"
 import Home from "../src/components/Home"
 
 // CSS
@@ -88,6 +89,7 @@ export default function Main() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main>
+        <Header />
         <Home />
       </main>
     </div>
