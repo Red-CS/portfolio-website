@@ -2,7 +2,7 @@ import styles from "../../styles/component/Menu.module.css";
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import useOnClickOutside from "../../public/hooks/useOnClickOutside";
-import Link from "next/Link";
+import Link from "next/link";
 
 function Menu() {
     const [menuOpen, setMenuOpen] = useState(false);
