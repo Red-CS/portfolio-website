@@ -1,0 +1,74 @@
+/* * {
+    margin: 0px;
+    padding: 0px;
+} */
+
+.mainSection {
+    width: auto;
+    height: 100vh;
+    background-image: url('../../public/img/Quads_edited3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: 45%;
+    z-index: 0;
+}
+
+.header {
+    width: 380px;
+    height: auto;
+    top: 30%;
+    right: 10%;
+    position: absolute;
+    text-align: right;
+    /*background-color: white;*/
+    /*display: inline;*/
+}
+
+.headerName {
+    font-size: 60px;
+    text-align: right;
+    line-height: 1.0em;
+    /* background-color: red; */
+    display: inline;
+    font-family: Gravity-Light;
+    text-transform: uppercase;
+}
+
+.headerDescription {
+    /* background-color: white; */
+    text-align: right;
+    font-size: 18px;
+    /* width: auto; */
+    z-index: 0;
+    font-family: Gravity-Light;
+}
+
+/* Mobile Styling */
+
+@media screen and (max-width: 768px) {
+
+    .mainSection {
+        background-image: url('../../public/img/Quads_cropped.png');
+        background-size: 60%;
+        transform: translateY(20%);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background-position-x: 50%;
+
+    }
+
+    .header {
+        top: 50%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        /*max-width: 30%;*/
+        
+    }
+
+    .headerDescription {
+        font-weight: bolder;
+    }
+}
