@@ -4,6 +4,7 @@ import Head from 'next/head'
 // Components
 import Header from "../src/components/Header"
 import Home from "../src/components/Home"
+import Second from "../src/components/Second"
 
 // CSS
 import styles from '../styles/page/Main.module.css'
@@ -91,6 +92,7 @@ export default function Main() {
       <main>
         <Header />
         <Home />
+        <Second/>
       </main>
     </div>
   )

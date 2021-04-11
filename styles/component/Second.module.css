@@ -1,0 +1,73 @@
+.second-section {
+    background-color: #191919;
+    color: #f4f4f4;
+    z-index: 0;
+}
+
+.about-me {
+    padding: 60px 15px;
+    text-align: justify;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.about-me h2 {
+    text-transform: uppercase;
+}
+
+.link-hover {
+    display: inline-block;
+}
+
+.link-hover:after {
+    background: none repeat scroll 0px 0px transparent;
+    bottom: 0px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0px;
+    position: relative;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0px;
+    transform: translateY(-3px);
+}
+
+.link-hover:hover:after {
+    width: 100%;
+    left: 0px;
+}
+/* // This adds a line next to the Section Header
+// .sh-about-me::after {
+//     content: "";
+//     display: block;
+//     position: relative;
+//     top: -10px;
+//     transform: translateY(-100%);
+//     width: 60%;
+//     height: 1px;
+//     margin-left: 250px;
+//     background-color: #f4f4f4;
+// } */
+
+#about-me-content {
+    padding: 20px 0px 60px;
+    /* // -webkit-text-stroke-width: .2px; */
+    font-family: SF Mono Light;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    
+    .about-me {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+
+    #about-me-content {
+        text-align: left;
+        font-size: 18px; /* Tentative */
+        letter-spacing: .08em;
+    }
+}
