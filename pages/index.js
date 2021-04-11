@@ -7,6 +7,7 @@ import Home from "../src/components/Home"
 import Second from "../src/components/Second"
 import Third from "../src/components/Third"
 import Fourth from "../src/components/Fourth"
+import Footer from "../src/components/Footer"
 
 // CSS
 import styles from '../styles/page/Main.module.css'
@@ -97,6 +98,7 @@ export default function Main() {
         <Second/>
         <Third />
         <Fourth />
+        <Footer />
       </main>
     </div>
   )
