@@ -14,8 +14,10 @@
 }
 
 #fourth-section-header {
+    font-family: Gravity-Light;
     padding-bottom: 10px;
     font-size: 30px;
+    text-transform: uppercase;
 }
 
 .venture-list {
