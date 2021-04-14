@@ -19,7 +19,8 @@ import { PrismaClient } from "@prisma/client";
 /**
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
-const featuredProjects = fetch("http://localhost:3000/api/featured-project", {
+// TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
+const featuredProjects = fetch(window.location.origin + "/api/featured-project", {
     method: "GET"
 })
 .then((response) => {
@@ -62,6 +63,7 @@ export default function ThirdSection() {
         console.log(error);
     }), [characterObject]);
 
+    // console.log(window.location.origin);
     console.log("Character Object:")
     console.log(characterObject)
     return (
