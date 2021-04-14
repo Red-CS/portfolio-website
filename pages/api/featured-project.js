@@ -29,7 +29,16 @@ const prisma = new PrismaClient();
 //   }
 
 export default async (req, res) => {
-    const projectData = await prisma.featuredProject.findMany();
-    // console.log(JSON.stringify(projectData, undefined, 4));
-    res.status(200).json({ projects: projectData })
+    switch(req.method) {
+        case "GET":
+            const projectData = await prisma.featuredProject.findMany();
+            res.status(200).json({ projects: projectData })
+            break;
+        
+        default:
+            res.status(400).json({ message: "Wrong call type, GET only" })
+            break;
+    }
+    // const projectData = await prisma.featuredProject.findMany();
+    // res.status(200).json({ projects: projectData })
 }

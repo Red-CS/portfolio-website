@@ -6,53 +6,60 @@ import { useState, useEffect } from "react";
 // Start of Prisma integration
 import { PrismaClient } from "@prisma/client";
 
-export async function getServerSideProps() {
-    const prisma = new PrismaClient();
-    const featuredProject = prisma.featuredProject.findMany();
-    return {
-        props: {
-            defaultProject : featuredProject
-        }
-    };
-}
+// export async function getServerSideProps() {
+//     const prisma = new PrismaClient();
+//     const featuredProject = prisma.featuredProject.findMany();
+//     return {
+//         props: {
+//             defaultProject : featuredProject
+//         }
+//     };
+// }
 
-async function saveFeaturedProject(project) {
-    const response = await fetch("/api/featured-project", {
-        method: "POST",
-        body: JSON.stringify(project)
-    })
-
-    if (!response.ok) {
-        throw new Error(response.statusText);
-    }
-
-    return await response.json();
-}
-
-
-const featuredProjects = fetch("/api/featured-project", {
+/**
+ * Fetches the objects in FeaturedProject table and returns the Promise.
+ */
+const featuredProjects = fetch("http://localhost:3000/api/featured-project", {
     method: "GET"
 })
 .then((response) => {
-    return response.json()
+    if (!response.ok) {
+        return Promise.reject(response);
+    }
+    return response.json();
 })
 .then((data) => {
     return data;
+})
+.catch((error) => {
+    console.log("Error in retrieving FeaturedProjects");
+    console.log(error);
 });
 
-// if (!response.ok) {
-//     throw new Error(response.statusText);
-// }
-
-// return response;
-
-
 export default function ThirdSection() {
-    const [characterObject, setCharacterObject] = useState({})
+    const [characterObject, setCharacterObject] = useState({
+        projects: [
+        {
+            project_name: "Default Name",
+            project_description: 'Default Description',
+            tech_one: 'Tech 1',
+            tech_two: 'Tech 2',
+            tech_three: 'Tech 3',
+            tech_four: 'Tech 4',
+            github_link: 'https://www.github.com/Red-CS',
+            project_link: 'https://www.github.com/Red-CS'
+        }
+    ]
+    })
+
+    // Update
     useEffect(() => 
         featuredProjects.then(data => {
             console.log(data)
             setCharacterObject(data)
+    })
+    .catch(error => {
+        console.log(error);
     }), [characterObject]);
 
     console.log("Character Object:")
