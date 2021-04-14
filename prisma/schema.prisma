@@ -2,10 +2,21 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {
   provider = "prisma-client-js"
+}
+
+model FeaturedProject {
+  project_name        String @id
+  project_description String
+  tech_one            String
+  tech_two            String
+  tech_three          String
+  tech_four           String
+  github_link         String
+  project_link        String
 }
