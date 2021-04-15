@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
-const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : process.env.VERCEL_URL;
+const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://${process.env.VERCEL_URL}`;
+console.log(url);
 const featuredProjects = fetch(`${url}/api/featured-project`, {
     method: "GET"
 })
