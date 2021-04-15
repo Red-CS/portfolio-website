@@ -1,10 +1,8 @@
 /** Prisma Client */
-import { PrismaClient } from "@prisma/client";
-// import prisma from "./_base.js"
-const prisma = new PrismaClient();
+import prisma from "./_base.js"
 
 /** Max number of featured projects in the database */
-const MAX_FEATURED_PROJECTS = 2;
+// const MAX_FEATURED_PROJECTS = 2;
 // Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
 
 /*
@@ -38,6 +36,7 @@ const MAX_FEATURED_PROJECTS = 2;
  */
 export default async (req, res) => {
     console.log("before")
+    console.log(process.env.NODE_ENV)
     const projectData = await prisma.featuredProject.findMany();
     console.log("after")
 
@@ -53,7 +52,7 @@ export default async (req, res) => {
         
         case "POST":
             // Ensure that the database doesn't already have 2 entries
-            if (projectData.length >= MAX_FEATURED_PROJECTS) {
+            if (projectData.length >= 2) {
                 return res.status(400).json({ 
                     message: "There are already the maximum number of projects allowed"
                 })
