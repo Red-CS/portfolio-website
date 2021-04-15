@@ -7,20 +7,20 @@ import { useState, useEffect } from "react";
 import { PrismaClient } from "@prisma/client";
 
 // export async function getServerSideProps() {
-//     const prisma = new PrismaClient();
-//     const featuredProject = prisma.featuredProject.findMany();
-//     return {
-//         props: {
-//             defaultProject : featuredProject
-//         }
-//     };
+//     // const prisma = new PrismaClient();
+//     // const featuredProject = prisma.featuredProject.findMany();
+//     const url = process.env.NODE_ENV === "development" ? process.env.SERVER_URI : `https://${process.env.VERCEL_URL}`;
+//     console.log(url)
+//     console.log("here")
+//     return url;
 // }
 
 /**
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
-const featuredProjects = fetch(window.location.origin + "/api/featured-project", {
+const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : ""
+const featuredProjects = fetch("http://localhost:3000/api/featured-project", {
     method: "GET"
 })
 .then((response) => {
@@ -38,6 +38,10 @@ const featuredProjects = fetch(window.location.origin + "/api/featured-project",
 });
 
 export default function ThirdSection() {
+    /* const url = process.env.NODE_ENV === "development" 
+    ? process.env.SERVER_URI : `https://${process.env.VERCEL_URL}`;
+    */
+    console.log(process.env.NODE_ENV) // == 'development
     const [characterObject, setCharacterObject] = useState({
         projects: [
         {
@@ -56,7 +60,7 @@ export default function ThirdSection() {
     // Update
     useEffect(() => 
         featuredProjects.then(data => {
-            console.log(data)
+            // console.log(data)
             setCharacterObject(data)
     })
     .catch(error => {
@@ -64,8 +68,8 @@ export default function ThirdSection() {
     }), [characterObject]);
 
     // console.log(window.location.origin);
-    console.log("Character Object:")
-    console.log(characterObject)
+    // console.log("Character Object:")
+    // console.log(characterObject)
     return (
     <div className={styles["section", "third-section"]}>
         <div className={styles["my-work"]}>
