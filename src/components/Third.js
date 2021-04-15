@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
-const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : ""
-const featuredProjects = fetch("http://localhost:3000/api/featured-project", {
+const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "www.redwilliams.dev"
+const featuredProjects = fetch(`${url}/api/featured-project`, {
     method: "GET"
 })
 .then((response) => {
