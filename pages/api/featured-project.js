@@ -35,11 +35,19 @@ const MAX_FEATURED_PROJECTS = 2;
  * @param {Object} res - Response object
  */
 export default async (req, res) => {
+    console.log("before")
     const projectData = await prisma.featuredProject.findMany();
-    
+    console.log("after")
+
     switch(req.method) {
         case "GET":
+            console.log("get")
+            try {
             return res.status(200).json({ projects: projectData })
+            }
+            catch (err) {
+                return res.status(400).json({ error : err})
+            }
         
         case "POST":
             // Ensure that the database doesn't already have 2 entries
