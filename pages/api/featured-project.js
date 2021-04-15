@@ -1,7 +1,7 @@
-// import { PrismaClient } from "@prisma/client";
+/** Prisma Client */
 import prisma from "./_base.js"
-// const prisma = new PrismaClient();
 
+/** Max number of featured projects in the database */
 const MAX_FEATURED_PROJECTS = 2;
 // Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
 
@@ -16,11 +16,7 @@ const MAX_FEATURED_PROJECTS = 2;
 */
 
 /**
- * Used to import data to the database
- */
-
-/**
- * @summary Handles the /api/featured-project API request
+ * Handles the /api/featured-project API request and reacts with the database
  * 
  * @example <caption>Retrieve all of the featured projects from the database:</caption>
  *     GET 200 /api/featured-project
@@ -28,10 +24,8 @@ const MAX_FEATURED_PROJECTS = 2;
  * @example <caption>Add a Featured Project to the database:</caption>
  *     POST 200 /api/featured-project
  *     
- * @example <caption>Replaces an Featured Project:</caption>
+ * @example <caption>Replaces an Featured Project, or any of it's fields:</caption>
  *     PUT 200 /api/featured-project
- * 
- * @example <caption>Replaces a field of a Featured Project:</caption>
  *     PATCH 200 /api/featured-project
  * 
  * @example <caption>Removes a Featured Project from the database:</caption>
@@ -42,62 +36,98 @@ const MAX_FEATURED_PROJECTS = 2;
  */
 export default async (req, res) => {
     const projectData = await prisma.featuredProject.findMany();
+    
     switch(req.method) {
         case "GET":
-            res.status(200).json({ projects: projectData })
-            break;
+            return res.status(200).json({ projects: projectData })
         
         case "POST":
-        case "PUT":
             // Ensure that the database doesn't already have 2 entries
-            if (projectData.length > MAX_FEATURED_PROJECTS) {
+            if (projectData.length >= MAX_FEATURED_PROJECTS) {
                 return res.status(400).json({ 
                     message: "There are already the maximum number of projects allowed"
                 })
             }
-            else {
+            try {
                 const newProject = JSON.parse(req.body);
-                try {
-                    // Add record
-                    await prisma.featuredProject.upsert({
-                        where: { project_name: newProject.project_name },
-                        update: newProject,
-                        create: newProject
-                    });
+                // Add record
+                await prisma.featuredProject.create(
+                    {
+                        data: newProject
+                    }
+                )
 
-                    // 
-                    res.status(200).json(
-                        { 
-                            message: "Successfully updated/created new Featured Project",
-                            project: newProject 
-                        }
-                    );
-                }
-                catch (err) {
-                    if (err instanceof SyntaxError) {
-                        res.status(400).json({ 
-                            message: "Error in adding project, unexpected end of JSON input"
-                        });
+                return res.status(200).json(
+                    { 
+                        message: "Successfully created new Featured Project"
                     }
-                    else {
-                        res.status(500).json({
-                            message: "An unexpected (server) error occurred"
-                        });
-                    }
-                }
+                );
             }
-            break;
-
+            catch (err) {
+                if (err instanceof SyntaxError) {
+                    return res.status(400).json({ 
+                        message: "Error in adding project, unexpected end of JSON input"
+                    });
+                }
+                return res.status(500).json({
+                    message: "An unexpected (server) error occurred"
+                });
+            }
+        
+        case "PUT":
         case "PATCH":
-            break;
+            try {
+                const newProject = JSON.parse(req.body);
+                // Update record
+                await prisma.featuredProject.update({
+                    where: { project_name: newProject.project_name },
+                    data: newProject
+                });
+
+                return res.status(200).json(
+                    { 
+                        message: "Successfully updated Featured Project"
+                    }
+                );
+            }
+            catch (err) {
+                if (err instanceof SyntaxError) {
+                    return res.status(400).json({ 
+                        message: "Error in adding project, unexpected end of JSON input"
+                    });
+                }
+                return res.status(500).json({
+                    message: "An unexpected (server) error occurred"
+                });
+            }
         
         case "DELETE":
-            break;
+            try {
+                const projectName = JSON.parse(req.body);
+                // Delete record
+                await prisma.featuredProject.delete({
+                    where: { project_name: projectName.project_name }
+                });
+
+                return res.status(200).json(
+                    { 
+                        message: "Successfully deleted Featured Project"
+                    }
+                );
+            }
+            catch (err) {
+                if (err instanceof SyntaxError) {
+                    return res.status(400).json({ 
+                        message: "Error in adding project, unexpected end of JSON input"
+                    });
+                }
+                return res.status(500).json({
+                    message: "An unexpected (server) error occurred"
+                });
+            }
         
         default:
             res.status(400).json({ message: `Wrong call type, ${req.method} not accepted` })
             break;
     }
-    // const projectData = await prisma.featuredProject.findMany();
-    // res.status(200).json({ projects: projectData })
 }

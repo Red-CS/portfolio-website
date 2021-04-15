@@ -3,18 +3,6 @@ import LeftFeaturedProject from "./LeftFeaturedProject";
 import RightFeaturedProject from "./RightFeaturedProject";
 import { useState, useEffect } from "react";
 
-// Start of Prisma integration
-import { PrismaClient } from "@prisma/client";
-
-// export async function getServerSideProps() {
-//     // const prisma = new PrismaClient();
-//     // const featuredProject = prisma.featuredProject.findMany();
-//     const url = process.env.NODE_ENV === "development" ? process.env.SERVER_URI : `https://${process.env.VERCEL_URL}`;
-//     console.log(url)
-//     console.log("here")
-//     return url;
-// }
-
 /**
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
@@ -37,39 +25,82 @@ const featuredProjects = fetch("http://localhost:3000/api/featured-project", {
     console.log(error);
 });
 
+const defaultFirstProject = {
+    project_name: "Default Name",
+    project_description: 'Default Description',
+    tech_one: 'Tech 1',
+    tech_two: 'Tech 2',
+    tech_three: 'Tech 3',
+    tech_four: 'Tech 4',
+    github_link: 'https://www.github.com/Red-CS',
+    project_link: 'https://www.github.com/Red-CS'
+}
+
+const defaultSecondProject = {
+    project_name: "Default Name 2",
+    project_description: 'Default Description 2',
+    tech_one: 'Tech 1',
+    tech_two: 'Tech 2',
+    tech_three: 'Tech 3',
+    tech_four: 'Tech 4',
+    github_link: 'https://www.github.com/Red-CS',
+    project_link: 'https://www.github.com/Red-CS'
+}
+
+
 export default function ThirdSection() {
     /* const url = process.env.NODE_ENV === "development" 
     ? process.env.SERVER_URI : `https://${process.env.VERCEL_URL}`;
     */
-    console.log(process.env.NODE_ENV) // == 'development
+    // console.log(process.env.NODE_ENV) // == 'development
     const [characterObject, setCharacterObject] = useState({
         projects: [
-        {
-            project_name: "Default Name",
-            project_description: 'Default Description',
-            tech_one: 'Tech 1',
-            tech_two: 'Tech 2',
-            tech_three: 'Tech 3',
-            tech_four: 'Tech 4',
-            github_link: 'https://www.github.com/Red-CS',
-            project_link: 'https://www.github.com/Red-CS'
-        }
-    ]
-    })
+            defaultFirstProject,
+            defaultSecondProject
+        ]
+    });
 
     // Update
     useEffect(() => 
         featuredProjects.then(data => {
-            // console.log(data)
-            setCharacterObject(data)
-    })
-    .catch(error => {
-        console.log(error);
-    }), [characterObject]);
+            switch(data["projects"].length) {
 
-    // console.log(window.location.origin);
-    // console.log("Character Object:")
-    // console.log(characterObject)
+                // There are no projects in the database
+                case 0:
+                    setCharacterObject({
+                        projects: [
+                            defaultFirstProject,
+                            defaultSecondProject
+                        ]
+                    })
+                    break;
+                
+                // There is only 1 project in the database
+                case 1:
+                    setCharacterObject({
+                        projects: [
+                            data["projects"][0],
+                            defaultFirstProject
+                        ]
+                    })
+                    break;
+
+                // Database is fully loaded
+                case 2:
+                    setCharacterObject({ data });
+                    break;
+
+                // Either something went wrong or I can't count
+                default:
+                    console.warn("Error");
+                    console.warn(data);
+                    break;
+            }
+        })
+        .catch(error => {
+        console.log(error);
+    }), []);
+    
     return (
     <div className={styles["section", "third-section"]}>
         <div className={styles["my-work"]}>
