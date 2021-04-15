@@ -1,5 +1,7 @@
 /** Prisma Client */
-import prisma from "./_base.js"
+import { PrismaClient } from "@prisma/client";
+// import prisma from "./_base.js"
+const prisma = new PrismaClient();
 
 /** Max number of featured projects in the database */
 const MAX_FEATURED_PROJECTS = 2;
