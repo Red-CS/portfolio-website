@@ -62,7 +62,7 @@ export default function ThirdSection() {
 
     // Update
     useEffect(() => 
-        featuredProjects.then(data => {
+    featuredProjects.then(data => {
             switch(data["projects"].length) {
 
                 // There are no projects in the database
@@ -87,7 +87,12 @@ export default function ThirdSection() {
 
                 // Database is fully loaded
                 case 2:
-                    setCharacterObject({ data });
+                    setCharacterObject({ 
+                        projects: [
+                            data["projects"][0],
+                            data["projects"][1]
+                        ]
+                    });
                     break;
 
                 // Either something went wrong or I can't count
@@ -100,7 +105,7 @@ export default function ThirdSection() {
         .catch(error => {
         console.log(error);
     }), []);
-    
+    //TODO Handle logic if request sends empty string for a field
     return (
     <div className={styles["section", "third-section"]}>
         <div className={styles["my-work"]}>
@@ -110,38 +115,33 @@ export default function ThirdSection() {
             <br/>
             <br/>
             <LeftFeaturedProject 
-                title={"Project Title"} 
-                descriptionParagraph={`Lorem ipsum dolor sit amet.
-                    Ad placeat perferendis perspiciatis vitae.
-                    Consequuntur, neque? Suscipit, laboriosam itaque.
-                    Praesentium nemo temporibus magni sunt!
-                    Eligendi illum sed ipsam aperiam.`}
-                tech1={"Python"}
-                tech2={"Github API"}
-                tech3={"Batch"}
+                title={characterObject["projects"][0].project_name} 
+                descriptionParagraph={characterObject["projects"][0].project_description}
+                tech1={characterObject["projects"][0].tech_one}
+                tech2={characterObject["projects"][0].tech_two}
+                tech3={characterObject["projects"][0].tech_three}
+                tech4={characterObject["projects"][0].tech_four}
+                githubLink={characterObject["projects"][0].github_link.indexOf("https://") == 0 
+                    ? characterObject["projects"][0].github_link 
+                    : `https://${characterObject["projects"][0].github_link}`}
+                projectLink={characterObject["projects"][0].project_link.indexOf("https://") == 0 
+                    ? characterObject["projects"][0].project_link 
+                    : `https://${characterObject["projects"][0].project_link}`}
                 imageSrc={"/img/2020-08-09.png"}
             />
             <RightFeaturedProject 
-                title={"Second Project"} 
-                descriptionParagraph={`Lorem ipsum dolor sit amet.
-                    Ad placeat perferendis perspiciatis vitae.
-                    Consequuntur, neque? Suscipit, laboriosam itaque.
-                    Praesentium nemo temporibus magni sunt!
-                    Eligendi illum sed ipsam aperiam.`}
-                tech1={"AWS"}
-                tech2={"Python"}
-                imageSrc={"/img/2020-08-09.png"}
-            />
-            <LeftFeaturedProject 
-                title={characterObject["projects"][0].project_name} 
-                descriptionParagraph={`Lorem ipsum dolor sit amet.
-                    Ad placeat perferendis perspiciatis vitae.
-                    Consequuntur, neque? Suscipit, laboriosam itaque.
-                    Praesentium nemo temporibus magni sunt!
-                    Eligendi illum sed ipsam aperiam.`}
-                tech1={"Python"}
-                tech2={"Github API"}
-                tech3={"Batch"}
+                title={characterObject["projects"][1].project_name} 
+                descriptionParagraph={characterObject["projects"][0].project_description}
+                tech1={characterObject["projects"][1].tech_one}
+                tech2={characterObject["projects"][1].tech_two}
+                tech3={characterObject["projects"][1].tech_three}
+                tech4={characterObject["projects"][1].tech_four}
+                githubLink={characterObject["projects"][1].github_link.indexOf("https://") == 0 
+                    ? characterObject["projects"][1].github_link 
+                    : `https://${characterObject["projects"][1].github_link}`}
+                projectLink={characterObject["projects"][1].project_link.indexOf("https://") == 0 
+                    ? characterObject["projects"][1].project_link 
+                    : `https://${characterObject["projects"][1].project_link}`}
                 imageSrc={"/img/2020-08-09.png"}
             />
             <br/>
