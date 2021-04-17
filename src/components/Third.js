@@ -22,6 +22,7 @@ switch (process.env.VERCEL_ENV) {
         url = "other"
 }
 console.log(url);
+console.log(process.env.VERCEL_ENV)
 const featuredProjects = fetch(`${url}/api/featured-project`, {
     method: "GET",
 })
