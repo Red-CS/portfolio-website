@@ -36,7 +36,6 @@ import supabase from "./_base.js";
  */
 export default async (req, res) => {
     const { data } = await supabase.from("FeaturedProject").select("*");
-    console.log(process.env.SUPABASE_URL)
     switch (req.method) {
         case "GET":
             try {
