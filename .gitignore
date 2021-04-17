@@ -30,9 +30,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
+# config
+next.config.js
 
+# vercel
 .vercel
 
 # Supabase

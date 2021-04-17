@@ -7,9 +7,8 @@ import { useState, useEffect } from "react";
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
-const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://${process.env.VERCEL_URL}`;
-console.log(url);
-const featuredProjects = fetch(`${url}/api/featured-project`, {
+// const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://${process.env.VERCEL_URL}`;
+const featuredProjects = fetch(`${process.env.BASE_URL}/api/featured-project`, {
     method: "GET"
 })
 .then((response) => {
@@ -106,7 +105,6 @@ export default function ThirdSection() {
         .catch(error => {
         console.log(error);
     }), []);
-    console.log(characterObject["projects"][0].project_link)
     //TODO Handle logic if request sends empty string for a field
     return (
     <div className={styles["section", "third-section"]}>
