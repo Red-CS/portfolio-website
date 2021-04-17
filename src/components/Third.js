@@ -12,7 +12,7 @@ console.log(url);
 if (url == undefined) {
     url = "https://redwilliams.dev"
 }
-console.log(url)
+console.log(process.env.SUPABASE_URL)
 const featuredProjects = fetch(`${url}/api/featured-project`, {
     method: "GET"
 })
