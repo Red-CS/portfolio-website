@@ -1,11 +1,9 @@
 /** Prisma Client */
 import supabase from "./_base.js";
 
-/** Max number of featured projects in the database */
-// const MAX_FEATURED_PROJECTS = 2;
-// Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
-
 /*
+Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
+
 400 Bad Request – This means that client-side input fails validation.
 401 Unauthorized – This means the user isn’t not authorized to access a resource. It usually returns when the user isn’t authenticated.
 403 Forbidden – This means the user is authenticated, but it’s not allowed to access a resource.
@@ -35,8 +33,7 @@ import supabase from "./_base.js";
  * @param {Object} res - Response object
  */
 export default async (req, res) => {
-    const { data } = await supabase.from("FeaturedProject").select("*");
-    console.log(process.env.SUPABASE_URL)
+    const { data } = await supabase.from(process.env.FEATURED_PROJECT).select("*");
     switch (req.method) {
         case "GET":
             try {
@@ -47,7 +44,7 @@ export default async (req, res) => {
 
         case "POST":
             // Ensure that the database doesn't already have 2 entries
-            if (data.length >= 2) {
+            if (data.length >= process.env.MAX_FEATURED_PROJECTS) {
                 return res.status(400).json({
                     message: "There are already the maximum number of projects allowed",
                     max: "2",
@@ -58,7 +55,7 @@ export default async (req, res) => {
                 const newProject = JSON.parse(req.body);
                 // Add record
                 const { data } = await supabase
-                    .from("FeaturedProject")
+                    .from(process.env.FEATURED_PROJECT)
                     .insert([newProject]);
 
                 // If nothing was sent
@@ -92,7 +89,7 @@ export default async (req, res) => {
                 // a) the only data is the project name: error => null
                 // b) The only data is the project name + it is wrong: error => []
                 const { error } = await supabase
-                    .from("FeaturedProject")
+                    .from(process.env.FEATURED_PROJECT)
                     .update(newProject)
                     .match({ project_name: newProject.project_name });
                 console.log(error);
@@ -116,7 +113,7 @@ export default async (req, res) => {
                 const projectName = JSON.parse(req.body).project_name;
                 // Delete record
                 const { data } = await supabase
-                    .from("FeaturedProject")
+                    .from(process.env.FEATURED_PROJECT)
                     .delete()
                     .match({ project_name: projectName })
                 if (data.length == 0) {
