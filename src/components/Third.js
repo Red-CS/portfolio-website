@@ -133,7 +133,7 @@ export default function ThirdSection() {
             />
             <RightFeaturedProject 
                 title={characterObject["projects"][1].project_name} 
-                descriptionParagraph={characterObject["projects"][0].project_description}
+                descriptionParagraph={characterObject["projects"][1].project_description}
                 tech1={characterObject["projects"][1].tech_one}
                 tech2={characterObject["projects"][1].tech_two}
                 tech3={characterObject["projects"][1].tech_three}

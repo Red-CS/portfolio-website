@@ -1,17 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { createClient } from "@supabase/supabase-js";
 
-// Docs about instantiating `PrismaClient` with Next.js:
-// https://pris.ly/d/help/next-js-best-practices
-
-let prisma = PrismaClient;
-
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
-  }
-  prisma = global.prisma;
-}
-
-export default prisma;
+const supabaseUrl = "https://kcnvttpaqvkyaqsiummu.supabase.co"
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxODYzOTIwMSwiZXhwIjoxOTM0MjE1MjAxfQ.LDccerMtdPIXqCd4afcshjakTWbU5jb53_vW5vqvcow'
+const supabase = createClient(supabaseUrl, supabaseKey)
+export default supabase;

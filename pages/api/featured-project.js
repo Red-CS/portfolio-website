@@ -1,6 +1,5 @@
 /** Prisma Client */
-import prisma from "./_base.js";
-import supabase from "./_base2.js";
+import supabase from "./_base.js";
 
 /** Max number of featured projects in the database */
 // const MAX_FEATURED_PROJECTS = 2;
@@ -36,7 +35,8 @@ import supabase from "./_base2.js";
  * @param {Object} res - Response object
  */
 export default async (req, res) => {
-    const { data, error } = await supabase.from("FeaturedProject").select("*");
+    const { data } = await supabase.from("FeaturedProject").select("*");
+    console.log(process.env.SUPABASE_URL)
     switch (req.method) {
         case "GET":
             try {
@@ -88,6 +88,9 @@ export default async (req, res) => {
         case "PATCH":
             try {
                 const newProject = JSON.parse(req.body);
+                // TODO Return the right message when
+                // a) the only data is the project name: error => null
+                // b) The only data is the project name + it is wrong: error => []
                 const { error } = await supabase
                     .from("FeaturedProject")
                     .update(newProject)
