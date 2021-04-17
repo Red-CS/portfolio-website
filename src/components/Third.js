@@ -8,9 +8,11 @@ import { useState, useEffect } from "react";
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
 const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://${process.env.VERCEL_URL}`;
+console.log(url);
 if (url == undefined) {
     url = "https://redwilliams.dev"
 }
+console.log(url)
 const featuredProjects = fetch(`${url}/api/featured-project`, {
     method: "GET"
 })
