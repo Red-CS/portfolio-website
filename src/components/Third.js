@@ -106,6 +106,7 @@ export default function ThirdSection() {
         .catch(error => {
         console.log(error);
     }), []);
+    console.log(characterObject["projects"][0].project_link)
     //TODO Handle logic if request sends empty string for a field
     return (
     <div className={styles["section", "third-section"]}>

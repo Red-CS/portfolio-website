@@ -1,5 +1,6 @@
 /** Prisma Client */
-import prisma from "./_base.js"
+import prisma from "./_base.js";
+import supabase from "./_base2.js";
 
 /** Max number of featured projects in the database */
 // const MAX_FEATURED_PROJECTS = 2;
@@ -17,126 +18,124 @@ import prisma from "./_base.js"
 
 /**
  * Handles the /api/featured-project API request and reacts with the database
- * 
+ *
  * @example <caption>Retrieve all of the featured projects from the database:</caption>
  *     GET 200 /api/featured-project
- * 
+ *
  * @example <caption>Add a Featured Project to the database:</caption>
  *     POST 200 /api/featured-project
- *     
+ *
  * @example <caption>Replaces an Featured Project, or any of it's fields:</caption>
  *     PUT 200 /api/featured-project
  *     PATCH 200 /api/featured-project
- * 
+ *
  * @example <caption>Removes a Featured Project from the database:</caption>
  *     DELETE 200 /api/featured-project
- * 
+ *
  * @param {Object} req - Request object
  * @param {Object} res - Response object
  */
 export default async (req, res) => {
-    console.log("before")
-    console.log(process.env.NODE_ENV)
-    const projectData = await prisma.featuredProject.findMany();
-    console.log("after")
-
-    switch(req.method) {
+    const { data, error } = await supabase.from("FeaturedProject").select("*");
+    switch (req.method) {
         case "GET":
-            console.log("get")
             try {
-            return res.status(200).json({ projects: projectData })
+                return res.status(200).json({ projects: data });
+            } catch (err) {
+                return res.status(400).json({ error: err });
             }
-            catch (err) {
-                return res.status(400).json({ error : err})
-            }
-        
+
         case "POST":
             // Ensure that the database doesn't already have 2 entries
-            if (projectData.length >= 2) {
-                return res.status(400).json({ 
-                    message: "There are already the maximum number of projects allowed"
-                })
+            if (data.length >= 2) {
+                return res.status(400).json({
+                    message: "There are already the maximum number of projects allowed",
+                    max: "2",
+                    current: data.length
+                });
             }
             try {
                 const newProject = JSON.parse(req.body);
                 // Add record
-                await prisma.featuredProject.create(
-                    {
-                        data: newProject
-                    }
-                )
+                const { data } = await supabase
+                    .from("FeaturedProject")
+                    .insert([newProject]);
 
-                return res.status(200).json(
-                    { 
-                        message: "Successfully created new Featured Project"
-                    }
-                );
-            }
-            catch (err) {
+                // If nothing was sent
+                if (data === null) {
+                    // Improper request format
+                    return res.status(400).json({
+                        message: "Error in sending project. Ensure body is formatted correctly"
+                    })
+                }
+                return res.status(200).json({
+                    message: "Successfully created new Featured Project",
+                    dataSent: data
+                });
+            } catch (err) {
                 if (err instanceof SyntaxError) {
-                    return res.status(400).json({ 
-                        message: "Error in adding project, unexpected end of JSON input"
+                    return res.status(400).json({
+                        message: "Error in adding project, unexpected end of JSON input",
+                        error: JSON.parse(err)
                     });
                 }
                 return res.status(500).json({
-                    message: "An unexpected (server) error occurred"
+                    message: "An unexpected (server) error occurred",
                 });
             }
-        
+
         case "PUT":
         case "PATCH":
             try {
                 const newProject = JSON.parse(req.body);
-                // Update record
-                await prisma.featuredProject.update({
-                    where: { project_name: newProject.project_name },
-                    data: newProject
-                });
+                const { error } = await supabase
+                    .from("FeaturedProject")
+                    .update(newProject)
+                    .match({ project_name: newProject.project_name });
+                console.log(error);
 
-                return res.status(200).json(
-                    { 
-                        message: "Successfully updated Featured Project"
-                    }
-                );
-            }
-            catch (err) {
+                return res.status(200).json({
+                    message: "Successfully updated Featured Project",
+                });
+            } catch (err) {
                 if (err instanceof SyntaxError) {
-                    return res.status(400).json({ 
-                        message: "Error in adding project, unexpected end of JSON input"
+                    return res.status(400).json({
+                        message: "Error in adding project, unexpected end of JSON input",
                     });
                 }
                 return res.status(500).json({
-                    message: "An unexpected (server) error occurred"
+                    message: "An unexpected (server) error occurred",
                 });
             }
-        
+
         case "DELETE":
             try {
-                const projectName = JSON.parse(req.body);
+                const projectName = JSON.parse(req.body).project_name;
                 // Delete record
-                await prisma.featuredProject.delete({
-                    where: { project_name: projectName.project_name }
+                const { data } = await supabase
+                    .from("FeaturedProject")
+                    .delete()
+                    .match({ project_name: projectName })
+                if (data.length == 0) {
+                    return res.status(400).json({ message: "Nothing was deleted. Ensure that the project name is correct" })
+                }
+                return res.status(200).json({
+                    message: "Successfully deleted Featured Project",
+                    removedProject: data
                 });
-
-                return res.status(200).json(
-                    { 
-                        message: "Successfully deleted Featured Project"
-                    }
-                );
-            }
-            catch (err) {
+            } catch (err) {
                 if (err instanceof SyntaxError) {
-                    return res.status(400).json({ 
-                        message: "Error in adding project, unexpected end of JSON input"
+                    return res.status(400).json({
+                        message: "Error in adding project, unexpected end of JSON input",
                     });
                 }
                 return res.status(500).json({
-                    message: "An unexpected (server) error occurred"
+                    message: "An unexpected (server) error occurred",
                 });
             }
-        
+
         default:
-            res.status(400).json({ message: `Wrong call type, ${req.method} not accepted` })
+            res.status(400).json({ message: `Wrong call type, ${req.method} not accepted` });
             break;
     }
-}
+};
