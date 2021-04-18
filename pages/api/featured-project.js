@@ -33,6 +33,7 @@ Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
  * @param {Object} res - Response object
  */
 export default async (req, res) => {
+    console.log(process.env.FEATURED_PROJECT)
     const { data } = await supabase.from(process.env.FEATURED_PROJECT).select("*");
     switch (req.method) {
         case "GET":
