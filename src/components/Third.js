@@ -14,6 +14,8 @@ if (process.env.VERCEL_ENV == "production") {
     url = "www.redwilliams.dev"
 }
 console.log(url)
+console.log("Vercel ENV: " + process.env.VERCEL_ENV)
+console.log("Next Public Vercel ENV: " + process.env.NEXT_PUBLIC_VERCEL_URL)
 const featuredProjects = fetch(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/featured-project`, {
     method: "GET",
 })
