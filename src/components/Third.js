@@ -9,8 +9,8 @@ import { useState, useEffect } from "react";
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
 console.log("Vercel URL: " + process.env.VERCEL_URL)
 console.log("NextPublic URL: " + process.env.NEXT_PUBLIC_VERCEL_URL)
-var url = process.env.NEXT_PUBLIC_VERCEL_URL;
-if (process.env.VERCEL_ENV == "production") {
+var url = process.env.NEXT_PUBLIC_VERCEL_ENV;
+if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
     url = "www.redwilliams.dev"
 }
 console.log(url)
