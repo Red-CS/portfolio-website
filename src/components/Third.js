@@ -7,11 +7,10 @@ import { useState, useEffect } from "react";
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
-const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : `https://${process.env.VERCEL_URL}`;
-console.log(url);
-console.log(process.env.NEXT_PUBLIC_SUPABASE_URL)
-const featuredProjects = fetch(`${url}/api/featured-project`, {
-    method: "GET"
+console.log("Vercel URL: " + process.env.VERCEL_URL)
+console.log("NextPublic URL: " + process.env.NEXT_PUBLIC_VERCEL_URL)
+const featuredProjects = fetch(`http://localhost:3000/api/featured-project`, {
+    method: "GET",
 })
     .then((response) => {
         if (!response.ok) {
@@ -96,16 +95,18 @@ export default function ThirdSection() {
                             });
                             break;
 
-                // Either something went wrong or I can't count
-                default:
-                    console.warn("Error");
-                    console.warn(data);
-                    break;
-            }
-        })
-        .catch(error => {
-        console.log(error);
-    }), []);
+                        // Either something went wrong or I can't count
+                        default:
+                            console.warn("Error");
+                            console.warn(data);
+                            break;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                }),
+        []
+    );
     //TODO Handle logic if request sends empty string for a field
     return (
         <div className={styles[("section", "third-section")]}>
