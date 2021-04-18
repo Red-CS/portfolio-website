@@ -9,14 +9,14 @@ import { useState, useEffect } from "react";
 // TODO: Change fetch url to https://redwilliams.dev/api/featured-project upon pushing
 console.log("Vercel URL: " + process.env.VERCEL_URL)
 console.log("NextPublic URL: " + process.env.NEXT_PUBLIC_VERCEL_URL)
-var url = process.env.NEXT_PUBLIC_VERCEL_ENV;
+var url = process.env.NEXT_PUBLIC_VERCEL_URL;
 if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
     url = "www.redwilliams.dev"
 }
 console.log(url)
 console.log("Vercel ENV: " + process.env.VERCEL_ENV)
-console.log("Next Public Vercel ENV: " + process.env.NEXT_PUBLIC_VERCEL_URL)
-const featuredProjects = fetch(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/featured-project`, {
+console.log("Next Public Vercel ENV: " + process.env.NEXT_PUBLIC_VERCEL_ENV)
+const featuredProjects = fetch(`https://${url}/api/featured-project`, {
     method: "GET",
 })
     .then((response) => {
