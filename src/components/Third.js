@@ -1,6 +1,7 @@
 import styles from "../../styles/component/Third.module.css";
 import LeftFeaturedProject from "./LeftFeaturedProject";
 import RightFeaturedProject from "./RightFeaturedProject";
+import { defaultFirstProject, defaultSecondProject } from "../lib/defaults";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
@@ -11,20 +12,7 @@ const supabase = createClient(
 /**
  * Fetches the objects in FeaturedProject table and returns the Promise.
  */
-
-// Preview Deployments
-var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-
-// Production
-if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
-  url = "https://www.redwilliams.dev";
-}
-
-// development
-else if (process.env.NODE_ENV === "development") {
-  url = "http://localhost:3000";
-}
-
+const url = "dfsdf";
 const featuredProjects = fetch(`${url}/api/featured-project`, {
   method: "GET",
 })
@@ -42,37 +30,10 @@ const featuredProjects = fetch(`${url}/api/featured-project`, {
     console.log(error);
   });
 
-// Predefines the default values of the Featured Projects
-const defaultFirstProject = {
-  project_name: "Default Name",
-  project_description: "Default Description",
-  tech_one: "Tech 1",
-  tech_two: "Tech 2",
-  tech_three: "Tech 3",
-  tech_four: "Tech 4",
-  github_link: "https://www.github.com/Red-CS",
-  project_link: "https://www.github.com/Red-CS",
-};
-
-const defaultSecondProject = {
-  project_name: "Default Name 2",
-  project_description: "Default Description 2",
-  tech_one: "Tech 1",
-  tech_two: "Tech 2",
-  tech_three: "Tech 3",
-  tech_four: "Tech 4",
-  github_link: "https://www.github.com/Red-CS",
-  project_link: "https://www.github.com/Red-CS",
-};
-
 /**
  * @returns Component for the Third Section (Project Section) of the site
  */
-export default function ThirdSection() {
-  // Manages the state of the projects the component reads
-  const [characterObject, setCharacterObject] = useState({
-    projects: [defaultFirstProject, defaultSecondProject],
-  });
+export default function ThirdSection(props) {
 
   const [objUrl, setObjUrl] = useState("");
   const getBlobUrl = async () => {
@@ -92,32 +53,27 @@ export default function ThirdSection() {
         .then((data) => {
           getBlobUrl();
           // Import project data from API call
-          switch (data["projects"].length) {
+          switch (props.projectData.length) {
             // There are no projects in the database
             case 0:
-              setCharacterObject({
-                projects: [defaultFirstProject, defaultSecondProject],
-              });
+              props.projectData[0] = defaultFirstProject;
+              props.projectData[1] = defaultSecondProject
               break;
 
             // There is only 1 project in the database
             case 1:
-              setCharacterObject({
-                projects: [data["projects"][0], defaultFirstProject],
-              });
+              props.projectData[1] = defaultSecondProject;
               break;
 
             // Database is fully loaded
             case 2:
-              setCharacterObject({
-                projects: [data["projects"][0], data["projects"][1]],
-              });
+              // Add any extral logic for fully loaded database
               break;
 
             // Either something went wrong or I can't count
             default:
               console.warn("Error");
-              console.warn(data);
+              console.warn(props.projectData);
               break;
           }
         })
@@ -126,6 +82,7 @@ export default function ThirdSection() {
         }),
     []
   );
+  console.log("Props ", props)
   //TODO Handle logic if request sends empty string for a field
   return (
     <div className={styles[("section", "third-section")]}>
@@ -141,44 +98,44 @@ export default function ThirdSection() {
         <br />
         <br />
         <LeftFeaturedProject
-          title={characterObject["projects"][0].project_name}
+          title={props.projectData[0].project_name}
           descriptionParagraph={
-            characterObject["projects"][0].project_description
+            props.projectData[0].project_description
           }
-          tech1={characterObject["projects"][0].tech_one}
-          tech2={characterObject["projects"][0].tech_two}
-          tech3={characterObject["projects"][0].tech_three}
-          tech4={characterObject["projects"][0].tech_four}
+          tech1={props.projectData[0].tech_one}
+          tech2={props.projectData[0].tech_two}
+          tech3={props.projectData[0].tech_three}
+          tech4={props.projectData[0].tech_four}
           githubLink={
-            characterObject["projects"][0].github_link.indexOf("https://") == 0
-              ? characterObject["projects"][0].github_link
-              : `https://${characterObject["projects"][0].github_link}`
+            props.projectData[0].github_link.indexOf("https://") == 0
+              ? props.projectData[0].github_link
+              : `https://${props.projectData[0].github_link}`
           }
           projectLink={
-            characterObject["projects"][0].project_link.indexOf("https://") == 0
-              ? characterObject["projects"][0].project_link
-              : `https://${characterObject["projects"][0].project_link}`
+            props.projectData[0].project_link.indexOf("https://") == 0
+              ? props.projectData[0].project_link
+              : `https://${props.projectData[0].project_link}`
           }
           imageSrc={objUrl}
         />
         <RightFeaturedProject
-          title={characterObject["projects"][1].project_name}
+          title={props.projectData[1].project_name}
           descriptionParagraph={
-            characterObject["projects"][1].project_description
+            props.projectData[1].project_description
           }
-          tech1={characterObject["projects"][1].tech_one}
-          tech2={characterObject["projects"][1].tech_two}
-          tech3={characterObject["projects"][1].tech_three}
-          tech4={characterObject["projects"][1].tech_four}
+          tech1={props.projectData[1].tech_one}
+          tech2={props.projectData[1].tech_two}
+          tech3={props.projectData[1].tech_three}
+          tech4={props.projectData[1].tech_four}
           githubLink={
-            characterObject["projects"][1].github_link.indexOf("https://") == 0
-              ? characterObject["projects"][1].github_link
-              : `https://${characterObject["projects"][1].github_link}`
+            props.projectData[1].github_link.indexOf("https://") == 0
+              ? props.projectData[1].github_link
+              : `https://${props.projectData[1].github_link}`
           }
           projectLink={
-            characterObject["projects"][1].project_link.indexOf("https://") == 0
-              ? characterObject["projects"][1].project_link
-              : `https://${characterObject["projects"][1].project_link}`
+            props.projectData[1].project_link.indexOf("https://") == 0
+              ? props.projectData[1].project_link
+              : `https://${props.projectData[1].project_link}`
           }
           imageSrc={"/img/2020-08-09.png"}
         />
