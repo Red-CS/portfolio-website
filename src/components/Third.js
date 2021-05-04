@@ -3,12 +3,7 @@ import LeftFeaturedProject from "./LeftFeaturedProject";
 import RightFeaturedProject from "./RightFeaturedProject";
 import { defaultFirstProject, defaultSecondProject } from "../lib/defaults";
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
 import supabase from "../../pages/api/_base";
-// const supabase = createClient(
-//   process.env.NEXT_PUBLIC_SUPABASE_URL,
-//   process.env.NEXT_PUBLIC_SUPABASE_KEY
-// );
 
 /**
  * @returns Component for the Third Section (Project Section) of the site
