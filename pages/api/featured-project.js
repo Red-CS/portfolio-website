@@ -37,21 +37,18 @@ export default async (req, res) => {
     switch (req.method) {
         case "GET":
             try {
-                // const { data, error } = await supabase
-                // .storage
-                // .from('FeaturedProjectMedia')
-                // .download('test_bucket.jpg')
-                // .catch((error) => {
-                //     console.log("Error in retrieving FeaturedProjects");
-                //     console.log(error);
-                // });
-                // console.log(data)
-                // console.log(error)
-                // const url = URL.createObjectURL(data)
-                // console.log(url)
-                // console.log("hee")
-                // console.log("Buffer: " + data.arrayBuffer())
-                // console.log(data.arrayBuffer().toString('base64'))
+                // const mainData = data;
+                // // console.log("Main Data: ", mainData)
+                // data = await supabase.storage
+                //     .from("FeaturedProjectMedia")
+                //     .download("projectImage2");
+                // const tos = Buffer.from(await data.data.arrayBuffer(), "utf8")
+                // // console.log("Keys: ", data.data)
+                // // for (var i in data) {
+                // //     data[i].blob = "Test " + i;
+                // // }
+                // mainData[0].blob = tos.toString("base64");
+                // // console.log(tos.toString("base64"))
                 return res.status(200).json({ projects: data });
             } catch (err) {
                 return res.status(400).json({ error: err });

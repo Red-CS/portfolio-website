@@ -14,7 +14,7 @@ import styles from '../styles/page/Main.module.css'
 
 // Runs on every request to the server
 export async function getServerSideProps() {
-
+  // TODO: Get url from getStaticProps, and pass it into getServerSideProps
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
@@ -52,7 +52,7 @@ export default function Main({ data }) {
         <title>Red Williams - First-Year General Engineering Student</title>
         <meta charSet="utf-8" />
         <meta name="description" content="Red Williams, Engineering/Computer Science student based in Blacksburg, Virginia" />
-        <meta name="keywords" content="Red Williams,Computer Science,Virginia Tech,Java,Python,HTML,JavaScript, web developer" />
+        <meta name="keywords" content="Red Williams,CS,Computer Science,Virginia Tech,Java,Python,HTML,JavaScript, web developer" />
         <meta name="author" content="Red Williams" />
         <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86" />
 
