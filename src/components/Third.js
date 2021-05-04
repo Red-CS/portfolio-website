@@ -79,7 +79,7 @@ export default function ThirdSection() {
     // Get image data
     const { data, error } = await supabase.storage
       .from("FeaturedProjectMedia")
-      .download("test_bucket.jpg");
+      .download("projectImage2");
     const blobUrl = URL.createObjectURL(data);
     setObjUrl(blobUrl);
     return blobUrl;
