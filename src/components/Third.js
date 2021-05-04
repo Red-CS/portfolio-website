@@ -52,7 +52,6 @@ export default function ThirdSection(props) {
         break;
     }
   }, []);
-  console.log("Props ", props)
   //TODO Handle logic if request sends empty string for a field
   return (
     <div className={styles[("section", "third-section")]}>
