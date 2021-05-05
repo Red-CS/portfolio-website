@@ -1,5 +1,5 @@
 export default function (req, res) {
-  let nodemailer = require("nodemailer");
+  const nodemailer = require("nodemailer");
   const transporter = nodemailer.createTransport({
     port: 465,
     host: "smtp.gmail.com",
@@ -22,12 +22,14 @@ export default function (req, res) {
     ${req.body.email.current}</p>`,
   };
 
+  console.log(mailData);
+
   try {
     transporter.sendMail(mailData, (err, info) => {
       if (err) {
-        console.log(err);
+        console.log("Error: ", err);
       } else {
-        console.log(info);
+        console.log("Info: ", info);
       }
     });
   } catch (e) {
@@ -35,5 +37,6 @@ export default function (req, res) {
     return res.status(400).json({ error: "Could not send email" });
   }
 
+  console.log("Finished");
   return res.status(200).json({ status: "200" });
 }
