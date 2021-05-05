@@ -3,49 +3,12 @@ import Head from "next/head";
 
 // Components
 import Header from "../src/components/Header";
-import Home from "../src/components/Home";
-import Second from "../src/components/Second";
-import Third from "../src/components/Third";
-import Fourth from "../src/components/Fourth";
+import ContactForm from "../src/components/ContactForm";
 import Footer from "../src/components/Footer";
 
-// CSS
-import styles from "../styles/page/Main.module.css";
-
-// Runs on every request to the server
-export async function getServerSideProps() {
-  // TODO: Get url from getStaticProps, and pass it into getServerSideProps
-  // Preview Deployments
-  var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-
-  // Production
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
-    url = "https://www.redwilliams.dev";
-  }
-
-  // Development
-  else if (process.env.NODE_ENV === "development") {
-    url = "http://localhost:3000";
-  }
-
-  // Fetch project data
-  const featuredProjects = await fetch(`${url}/api/featured-project`, {
-    method: "GET",
-  });
-
-  const projectInfo = await featuredProjects.json();
-
-  // Data to send as props
-  const data = {
-    url: url,
-    projectData: projectInfo.projects,
-  };
-  return { props: { data } };
-}
-
-export default function Main({ data }) {
+export default function Contact() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <meta charSet="UTF-8" />
 
@@ -92,12 +55,9 @@ export default function Main({ data }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main>
-        <Header />
-        <Home />
-        <Second />
-        <Third url={data.url} projectData={data.projectData} />
-        <Fourth />
-        <Footer />
+        {/* <Header /> */}
+        <ContactForm />
+        {/* <Footer /> */}
       </main>
     </div>
   );
