@@ -11,11 +11,11 @@ export default function (req, res) {
   });
 
   const mailData = {
-    from: "redwilliams.dev@gmail.com",
+    from: '"Website Contact Form" <redwilliams.dev@gmail.com>',
     to: "red.devcs@gmail.com",
     subject: `Message From ${req.body.name.current}`,
-    text: req.body.message + " | Sent from: " + req.body.email.current,
-    html: `<div>${req.body.message.current}</div><p>Sent from:
+    text: req.body.message.current + " | Sent from: " + req.body.email.current,
+    html: `<div><h2>${req.body.subject.current}</h2>${req.body.message.current}</div><p>Sent from:
     ${req.body.email.current}</p>`,
   };
 

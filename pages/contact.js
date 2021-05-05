@@ -55,9 +55,9 @@ export default function Contact() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main>
-        {/* <Header /> */}
+        <Header />
         <ContactForm />
-        {/* <Footer /> */}
+        <Footer />
       </main>
     </div>
   );
