@@ -24,18 +24,16 @@ export default function (req, res) {
 
   console.log(mailData);
 
-  try {
-    transporter.sendMail(mailData, (err, info) => {
-      if (err) {
-        console.log("Error: ", err);
-      } else {
-        console.log("Info: ", info);
-      }
-    });
-  } catch (e) {
-    console.log(e);
-    return res.status(400).json({ error: "Could not send email" });
-  }
+  // try {
+  transporter.sendMail(mailData, (err, info) => {
+    console.log("Error: ", err);
+    console.log("Info: ", info);
+  });
+
+  // } catch (e) {
+  //   console.log(e);
+  //   return res.status(400).json({ error: "Could not send email" });
+  // }
 
   console.log("Finished");
   return res.status(200).json({ status: "200" });
