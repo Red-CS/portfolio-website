@@ -10,6 +10,9 @@ export default function (req, res) {
     secure: true,
   });
 
+  console.log(process.env.EMAIL_USER);
+  console.log(process.env.EMAIL_PASSWORD);
+
   const mailData = {
     from: '"Website Contact Form" <redwilliams.dev@gmail.com>',
     to: "red.devcs@gmail.com",
@@ -20,7 +23,13 @@ export default function (req, res) {
   };
 
   try {
-    transporter.sendMail(mailData);
+    transporter.sendMail(mailData, (err, info) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(info);
+      }
+    });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ error: "Could not send email" });
