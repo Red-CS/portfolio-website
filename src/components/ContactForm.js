@@ -64,6 +64,9 @@ export default function ContactForm() {
               name="name"
               placeholder="Your Full Name"
               autoComplete="off"
+              onChange={(e) => {
+                name.current = e.target.value;
+              }}
             />
             <div className={styles["form-group"]}>
               <label className={styles["label"]}>Email Address</label>
@@ -73,6 +76,9 @@ export default function ContactForm() {
                 name="email"
                 placeholder="Your Email Address"
                 autoComplete="off"
+                onChange={(e) => {
+                  email.current = e.target.value;
+                }}
               />
             </div>
             <div className={styles["form-group"]}>
@@ -83,6 +89,9 @@ export default function ContactForm() {
                 name="subject"
                 placeholder="The Email Subject"
                 autoComplete="off"
+                onChange={(e) => {
+                  subject.current = e.target.value;
+                }}
               />
             </div>
             <div className={styles["form-group"]}>
@@ -92,6 +101,9 @@ export default function ContactForm() {
                 name="message"
                 placeholder="Your Message"
                 rows="6"
+                onChange={(e) => {
+                  message.current = e.target.value;
+                }}
               />
             </div>
             <div className={styles["submit"]}>
