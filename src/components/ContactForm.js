@@ -9,6 +9,7 @@ export default function ContactForm() {
   const subject = useRef("");
   const message = useRef("");
   const [submitted, setSubmitted] = useState(false);
+  const [sendSuccessful, setSendSuccessful] = useState(false);
   const [successMessage, setSuccessMessage] = useState(
     "Sorry, your message could not be sent"
   );
@@ -22,7 +23,7 @@ export default function ContactForm() {
       email.current === null ||
       email.current.indexOf("@") === -1 ||
       subject.current === null ||
-      message.current != null
+      message.current === null
     ) {
       setSuccessMessage(
         "Invalid flieds. Please ensure everything is filled and correct"
@@ -39,10 +40,11 @@ export default function ContactForm() {
       )
       .then((result) => {
         setSubmitted(result.status === 200);
+        setSendSuccessful(result.status === 200);
         setSuccessMessage(
-          submitted
+          result.status === 200
             ? "Your message was successfully sent"
-            : "There was an error in sending your message"
+            : "There was an error inH sending your message"
         );
       })
       .catch((e) => {
@@ -107,7 +109,12 @@ export default function ContactForm() {
               />
             </div>
             <div className={styles["submit"]}>
-              <button className={styles["button"]} type="submit">
+              <button
+                className={styles["button"]}
+                type="submit"
+                value="Submit"
+                disabled={sendSuccessful}
+              >
                 Send
               </button>
               <div
