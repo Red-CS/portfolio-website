@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 import styles from "../../styles/component/ContactForm.module.css";
 
 export default function ContactForm() {
@@ -13,25 +14,16 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let data = {
-      name,
-      email,
-      subject,
-      message,
-    };
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.status === 200) {
-        setSuccessMessage("Your message was successfully sent");
-        setSubmitted(true);
-      }
-    });
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_SERVICE_ID,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID,
+        e.target,
+        process.env.NEXT_PUBLIC_USER_ID
+      )
+      .then((result) => {
+        console.log(result);
+      });
   };
 
   return (
@@ -40,7 +32,7 @@ export default function ContactForm() {
       <div className={styles["contact-container"]}>
         <div className={styles["left-col"]}></div>
         <div className={styles["right-col"]}>
-          <div className={styles["form"]}>
+          <form className={styles["form"]} onSubmit={handleSubmit}>
             <label className={styles["label"]}>Full Name</label>
             <input
               className={styles["input"]}
@@ -91,15 +83,7 @@ export default function ContactForm() {
               />
             </div>
             <div className={styles["submit"]}>
-              <button
-                className={styles["button"]}
-                type="submit"
-                value="Send"
-                onClick={(e) => {
-                  handleSubmit(e);
-                }}
-                disabled={submitted}
-              >
+              <button className={styles["button"]} type="submit">
                 Send
               </button>
             </div>
@@ -109,7 +93,7 @@ export default function ContactForm() {
             >
               <p>{successMessage}</p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
