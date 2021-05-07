@@ -1,12 +1,8 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import styles from "../../styles/component/ContactForm.module.css";
 
 export default function ContactForm() {
-  const name = useRef("");
-  const email = useRef("");
-  const subject = useRef("");
-  const message = useRef("");
   const [submitted, setSubmitted] = useState(false);
   const [successMessage, setSuccessMessage] = useState(
     "Sorry, your message could not be sent"
@@ -22,7 +18,16 @@ export default function ContactForm() {
         process.env.NEXT_PUBLIC_USER_ID
       )
       .then((result) => {
-        console.log(result);
+        setSubmitted(result.status === 200);
+        setSuccessMessage(
+          submitted
+            ? "Your message was successfully sent"
+            : "There was an error in sending your message"
+        );
+      })
+      .catch((e) => {
+        setSuccessMessage("There was an error in sending your message");
+        console.log(e);
       });
   };
 
@@ -40,9 +45,6 @@ export default function ContactForm() {
               name="name"
               placeholder="Your Full Name"
               autoComplete="off"
-              onChange={(e) => {
-                name.current = e.target.value;
-              }}
             />
             <div className={styles["form-group"]}>
               <label className={styles["label"]}>Email Address</label>
@@ -52,9 +54,6 @@ export default function ContactForm() {
                 name="email"
                 placeholder="Your Email Address"
                 autoComplete="off"
-                onChange={(e) => {
-                  email.current = e.target.value;
-                }}
               />
             </div>
             <div className={styles["form-group"]}>
@@ -65,9 +64,6 @@ export default function ContactForm() {
                 name="subject"
                 placeholder="The Email Subject"
                 autoComplete="off"
-                onChange={(e) => {
-                  subject.current = e.target.value;
-                }}
               />
             </div>
             <div className={styles["form-group"]}>
@@ -77,21 +73,18 @@ export default function ContactForm() {
                 name="message"
                 placeholder="Your Message"
                 rows="6"
-                onChange={(e) => {
-                  message.current = e.target.value;
-                }}
               />
             </div>
             <div className={styles["submit"]}>
               <button className={styles["button"]} type="submit">
                 Send
               </button>
-            </div>
-            <div
-              className={styles["confirm-message"]}
-              style={{ visibility: submitted ? "visible" : "hidden" }}
-            >
-              <p>{successMessage}</p>
+              <div
+                className={styles["confirm-message"]}
+                style={{ visibility: submitted ? "visible" : "hidden" }}
+              >
+                <p>{successMessage}</p>
+              </div>
             </div>
           </form>
         </div>
