@@ -1,0 +1,20 @@
+.svg-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#svg:hover #bottom-level {
+  height: 70px;
+  transition: 0.15s ease-in-out;
+}
+
+#svg:hover #top-level {
+  height: 60px;
+  transition: 0.15s ease-in-out;
+}
+
+#svg #bottom-level,
+#svg #top-level {
+  transition: 0.15s ease-in-out;
+}

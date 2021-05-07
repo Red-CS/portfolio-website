@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
 import styles from "../../styles/component/ContactForm.module.css";
+import Logo from "./Logo";
 
 export default function ContactForm() {
+  const name = useRef("");
+  const email = useRef("");
+  const subject = useRef("");
+  const message = useRef("");
   const [submitted, setSubmitted] = useState(false);
   const [successMessage, setSuccessMessage] = useState(
     "Sorry, your message could not be sent"
@@ -10,6 +15,21 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if email is of valid format
+    if (
+      name.current === null ||
+      email.current === null ||
+      email.current.indexOf("@") === -1 ||
+      subject.current === null ||
+      message.current != null
+    ) {
+      setSuccessMessage(
+        "Invalid flieds. Please ensure everything is filled and correct"
+      );
+      setSubmitted(true);
+      return;
+    }
     emailjs
       .sendForm(
         process.env.NEXT_PUBLIC_SERVICE_ID,
@@ -33,7 +53,6 @@ export default function ContactForm() {
 
   return (
     <div>
-      {/* <form className="contact-form"> */}
       <div className={styles["contact-container"]}>
         <div className={styles["left-col"]}></div>
         <div className={styles["right-col"]}>
@@ -87,10 +106,9 @@ export default function ContactForm() {
               </div>
             </div>
           </form>
+          <Logo />
         </div>
       </div>
-
-      {/* </form> */}
     </div>
   );
 }
