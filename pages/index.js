@@ -30,7 +30,8 @@ export async function getServerSideProps() {
 
   // Fetch project data
   const featuredProjects = await fetch(`${url}/api/featured-project`, {
-    method: "GET",
+    method: "POST",
+    body: JSON.stringify({ featured: true }),
   });
 
   const projectInfo = await featuredProjects.json();
