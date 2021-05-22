@@ -47,13 +47,11 @@ export default async (req, res) => {
       }
 
     case "POST":
-      console.log("Value: ", JSON.parse(req.body).featured);
       try {
         const { data } = await supabase
           .from(process.env.FEATURED_PROJECT)
           .select("*")
           .match({ featured: JSON.parse(req.body).featured });
-        console.log(data.length);
         return res.status(200).json({ projects: data });
       } catch (err) {
         return res.status(400).json({ error: err });
