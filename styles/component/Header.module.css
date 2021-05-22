@@ -1,42 +1,36 @@
 .nav-header {
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    position: fixed;
-    top: 0px;
-    z-index: 11;
-    padding: 0px 50px;
-    width: 100%;
-    /* backdrop-filter: blur(10px); */
-    transition: var(--transition);
-    height: var(--nav-height);
-    /* // transform: translateY(0px);
-    // background-color: rgba(10, 25, 47, 0.85);
-    // box-shadow: 0 10px 30px -10px #191919; */
-    filter: none !important;
-    pointer-events: auto !important;
-    user-select: auto !important;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  z-index: 11;
+  padding: 0px 50px;
+  width: 100%;
+  filter: none !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
 
-    background-color: transparent;
+  background-color: transparent;
 }
 
 @media (max-width: 1080px) {
-    .nav-header {
-        padding: 0px 40px;
-    }
+  .nav-header {
+    padding: 0px 40px;
+  }
 }
 
 @media (max-width: 768px) {
-    .nav-header {
-        padding: 0px 25px;
-        margin-top: -1px; /* Fixes issue where site background clips through the top of the header */
-    }
+  .nav-header {
+    padding: 0px 25px;
+    margin-top: -1px; /* Fixes issue where site background clips through the top of the header */
+  }
 }

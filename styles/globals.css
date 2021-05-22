@@ -10,37 +10,39 @@
 
 @font-face {
   font-family: Proxima-Nova;
-  src: url("/fonts/Proxima Nova/Proxima Nova Alt Light.otf") format("opentype")
+  src: url("/fonts/Proxima Nova/Proxima Nova Alt Light.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'SF Mono Light';
+  font-family: "SF Mono Light";
   font-style: normal;
   font-weight: normal;
   src: url("/fonts/SF Mono/SFMonoLight.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Calibre';
+  font-family: "Calibre";
   src: url("/fonts/Calibre/Calibre-Semibold.woff") format("woff");
-
 }
 
 :root {
   --color-white: #ffffff;
   --color-black: #191919;
-  --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   --nav-height: 100px;
   --nav-scroll-height: 70px;
   --hamburger-width: 30px;
   --border-radius: 4px;
-  --ham-before: top 0.1s ease-in 0.25s,opacity 0.1s ease-in;
-  --ham-after: bottom 0.1s ease-in 0.25s,transform 0.22s cubic-bezier(0.55,0.055,0.675,0.19);
-  --ham-before-active: top 0.1s ease-out,opacity 0.1s ease-out 0.12s;
-  --ham-after-active: bottom 0.1s ease-out,transform 0.22s cubic-bezier(0.215,0.61,0.355,1) 0.12s;
+  --ham-before: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+  --ham-after: bottom 0.1s ease-in 0.25s,
+    transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ham-before-active: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+  --ham-after-active: bottom 0.1s ease-out,
+    transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0px;
 }
@@ -50,7 +52,6 @@ body {
   background-color: #ffffff;
   color: #191919;
 
-  /* font-family: 'Inter', sans-serif; */
   font-family: Gravity-Light;
   font-size: 20px;
   font-weight: normal;
@@ -61,7 +62,6 @@ body {
 .container {
   height: 100%;
   width: auto;
-  /* margin: auto; */
 }
 
 a:link,
@@ -100,12 +100,10 @@ a:hover {
 }
 
 h1 {
-  /* // text-transform: uppercase; */
   letter-spacing: 0.2em;
 }
 
 h2 {
-  /* // text-transform: uppercase; */
   letter-spacing: 0.2em;
 }
 
@@ -142,6 +140,6 @@ h3 {
 
 @media screen and (max-width: 768px) {
   .section {
-      padding: 40px;
-  }   
+    padding: 40px;
+  }
 }

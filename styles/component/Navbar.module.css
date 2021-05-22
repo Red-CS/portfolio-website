@@ -1,178 +1,177 @@
 .nav {
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    color: var(--color-black);
-    font-family: SF Mono Light;
-    counter-reset: item 0;
-    z-index: 12;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  color: var(--color-black);
+  font-family: SF Mono Light;
+  counter-reset: item 0;
+  z-index: 12;
+
+  -webkit-box-pack: justify;
+  -webkit-box-align: center;
 }
 
 .logo {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }
 
 .logo a {
-    color: var(--color-black);
+  color: var(--color-black);
 }
 
 .logo a:link,
 .logo a:active,
 .logo a:hover,
 .logo a:visited {
-    color: var(--color-black);
-    text-decoration: none;
+  color: var(--color-black);
+  text-decoration: none;
 }
 
 .link {
-    display: inline-block;
-    text-decoration: none;
-    text-decoration-skip-ink: auto;
-    color: inherit;
-    position: relative;
-    transition: var(--transition);
-    cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
 }
 
 .navLinks {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .navLinks ol {
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 0px;
-    margin: 0px;
-    list-style: none;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
 }
 
 .navLinks ol li {
-    margin: 0px 5px;
-    position: relative;
-    counter-increment: item 1;
-    font-size: 15px; /* Variable */
+  margin: 0px 5px;
+  position: relative;
+  counter-increment: item 1;
+  font-size: 15px; /* Variable */
 }
 
 .navLinks ol li a {
-    padding: 10px;
+  padding: 10px;
 }
 
 .navLinks ol li a::before {
-    content: "0" counter(item) ".";
-    margin-right: 5px;
-    color: var(--color-black);
-    font-size: 15px;
-    text-align: right;
-
+  content: "0" counter(item) ".";
+  margin-right: 5px;
+  color: var(--color-black);
+  font-size: 15px;
+  text-align: right;
 }
 
 .navLinks ol li a:link,
 .navLinks ol li a:active,
 .navLinks ol li a:hover,
 .navLinks ol li a:visited {
-    color: var(--color-black);
-    text-decoration: none;
+  color: var(--color-black);
+  text-decoration: none;
 }
 
-
 .menu {
-    display: none;
+  display: none;
 }
 
 .ham-button {
-    cursor: pointer;
-    border: 0px;
-    border-radius: 0px;
+  cursor: pointer;
+  border: 0px;
+  border-radius: 0px;
 }
 
 .ham-box {
-    display: inline-block;
-    position: relative;
-    width: var(--hamburger-width);
-    height: 24px;
+  display: inline-block;
+  position: relative;
+  width: var(--hamburger-width);
+  height: 24px;
 }
 
 .ham-box-inner {
-    position: absolute;
-    top: 50%;
-    right: 0px;
-    width: var(--hamburger-width);
-    height: 2px;
-    border-radius: var(--border-radius);
-    background-color:var(--color-black);
-    transition: transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0s;
-    transform: rotate(0deg);
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  width: var(--hamburger-width);
+  height: 2px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-black);
+  transition: transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0s;
+  transform: rotate(0deg);
 }
 
 .ham-box-inner::before {
-    width: 120%;
-    top: -10px;
-    opacity: 1;
-    transition: var(--ham-before);
+  width: 120%;
+  top: -10px;
+  opacity: 1;
+  transition: var(--ham-before);
 }
 
 .ham-box-inner::after {
-    width: 80%;
-    bottom: -10px;
-    transform: rotate(0deg);
-    transition: var(--ham-after);
+  width: 80%;
+  bottom: -10px;
+  transform: rotate(0deg);
+  transition: var(--ham-after);
 }
 
 .ham-box-inner::before,
 .ham-box-inner::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: auto;
-    right: 0px;
-    width: var(--hamburger-width);
-    height: 2px;
-    border-radius: 4px;
-    background-color: var(--color-black);
-    transition-timing-function: ease;
-    transition-duration: 0.15s;
-    transition-property: transform;
+  content: "";
+  display: block;
+  position: absolute;
+  left: auto;
+  right: 0px;
+  width: var(--hamburger-width);
+  height: 2px;
+  border-radius: 4px;
+  background-color: var(--color-black);
+  transition-timing-function: ease;
+  transition-duration: 0.15s;
+  transition-property: transform;
 }
 
 @media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
 
-    .navLinks {
-        display: none;
-    }
+  .menu {
+    display: block;
+  }
 
-    .menu {
-        display: block;
-    }
-
-    .ham-button {
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        position: relative;
-        z-index: 10;
-        margin-right: -15px;
-        padding: 15px;
-        border: 0px;
-        background-color: transparent;
-        color: inherit;
-        text-transform: none;
-        transition-timing-function: linear;
-        transition-duration: 0.15s;
-        transition-property: opacity, filter;
-    }
+  .ham-button {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    margin-right: -15px;
+    padding: 15px;
+    border: 0px;
+    background-color: transparent;
+    color: inherit;
+    text-transform: none;
+    transition-timing-function: linear;
+    transition-duration: 0.15s;
+    transition-property: opacity, filter;
+  }
 }

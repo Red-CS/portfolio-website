@@ -1,4 +1,4 @@
-import styles from "../../styles/component/Third.module.css";
+import styles from "@styles/Third.module.css";
 import LeftFeaturedProject from "./LeftFeaturedProject";
 import RightFeaturedProject from "./RightFeaturedProject";
 import { Fragment } from "react";

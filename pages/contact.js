@@ -2,9 +2,9 @@
 import Head from "next/head";
 
 // Components
-import Header from "../src/components/Header";
-import ContactForm from "../src/components/ContactForm";
-import Footer from "../src/components/Footer";
+import Header from "@components/Header";
+import ContactForm from "@components/ContactForm";
+import Footer from "@components/Footer";
 
 export default function Contact() {
   return (
@@ -12,7 +12,7 @@ export default function Contact() {
       <Head>
         <meta charSet="UTF-8" />
 
-        <title>Red Williams - First-Year General Engineering Student</title>
+        <title>Contact | Red Williams</title>
         <meta charSet="utf-8" />
         <meta
           name="description"
@@ -20,7 +20,7 @@ export default function Contact() {
         />
         <meta
           name="keywords"
-          content="Red Williams,CS,Computer Science,Virginia Tech,Java,Python,HTML,JavaScript, web developer"
+          content="Red Williams,CS,Computer Science,Virginia Tech,Java,Python,HTML,JavaScript,Web Developer"
         />
         <meta name="author" content="Red Williams" />
         <meta

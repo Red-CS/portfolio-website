@@ -1,37 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState(null);
+  const [prevOffset, setPrevOffset] = useState(0);
 
-    const [scrollDirection, setScrollDirection] = useState(null);
-    const [prevOffset, setPrevOffset] = useState(0);
+  const toggleScrollDirection = () => {
+    let scrollY = window.pageYOffset;
 
-    const toggleScrollDirection = () => {
-        let scrollY = window.pageYOffset;
-
-        if (scrollY === 0) {
-            setScrollDirection(null);
-        }
-
-        if (scrollY > prevOffset) {
-            setScrollDirection("down");
-        } else if (scrollY < prevOffset) {
-           setScrollDirection("up");
-        }
-
-        setPrevOffset(scrollY);
+    if (scrollY === 0) {
+      setScrollDirection(null);
     }
 
-    useEffect(() => {
+    if (scrollY > prevOffset) {
+      setScrollDirection("down");
+    } else if (scrollY < prevOffset) {
+      setScrollDirection("up");
+    }
 
-        window.addEventListener("scroll", toggleScrollDirection);
-        // console.log(scrollDirection);
+    setPrevOffset(scrollY);
+  };
 
-        return () => {
-            window.removeEventListener("scroll", toggleScrollDirection);
-        }
-    });
+  useEffect(() => {
+    window.addEventListener("scroll", toggleScrollDirection);
+    // console.log(scrollDirection);
 
-    return scrollDirection;
-}
+    return () => {
+      window.removeEventListener("scroll", toggleScrollDirection);
+    };
+  });
+
+  return scrollDirection;
+};
 
 export default useScrollDirection;

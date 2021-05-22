@@ -2,15 +2,12 @@
 import Head from "next/head";
 
 // Components
-import Header from "../src/components/Header";
-import Home from "../src/components/Home";
-import Second from "../src/components/Second";
-import Third from "../src/components/Third";
-import Fourth from "../src/components/Fourth";
-import Footer from "../src/components/Footer";
-
-// CSS
-import styles from "../styles/page/Main.module.css";
+import Header from "@components/Header";
+import Home from "@components/Home";
+import Second from "@components/Second";
+import Third from "@components/Third";
+import Fourth from "@components/Fourth";
+import Footer from "@components/Footer";
 
 // Runs on every request to the server
 export async function getServerSideProps() {
@@ -46,10 +43,8 @@ export async function getServerSideProps() {
 
 export default function Main({ data }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <meta charSet="UTF-8" />
-
         <title>Red Williams - First-Year General Engineering Student</title>
         <meta charSet="utf-8" />
         <meta

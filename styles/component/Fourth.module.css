@@ -1,55 +1,55 @@
 .fourth-section {
-    border: none;
-    padding-top: 20px;
-    background-color: #ffffff;
-    color: #191919;
+  border: none;
+  padding-top: 20px;
+  background-color: #ffffff;
+  color: #191919;
 }
 
 .future-ventures {
-    padding: 60px 15px;
-    margin-left: 10%;
-    margin-right: 10%;
-    font-family: SF Mono Light;
-    font-size: 15px;
+  padding: 60px 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: SF Mono Light;
+  font-size: 15px;
 }
 
 #fourth-section-header {
-    font-family: Gravity-Light;
-    padding-bottom: 10px;
-    font-size: 30px;
-    text-transform: uppercase;
+  font-family: Gravity-Light;
+  padding-bottom: 10px;
+  font-size: 30px;
+  text-transform: uppercase;
 }
 
 .venture-list {
-    list-style-position: inside;
+  list-style-position: inside;
 }
 
 .venture-list li {
-    font-size: 15px;
-    font-weight: 600;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .section-underline {
-    font-style: italic;
-    font-family: Gravity-Light;
-    font-size: 15px;
-    padding-bottom: 40px;
+  font-style: italic;
+  font-family: Gravity-Light;
+  font-size: 15px;
+  padding-bottom: 40px;
 }
 
 .categories {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media (max-width: 992px) {
-    .future-ventures {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
+  .future-ventures {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 
-    .categories {
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  .categories {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }

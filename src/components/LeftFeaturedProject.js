@@ -1,4 +1,4 @@
-import styles from "../../styles/component/LeftFeaturedProject.module.css";
+import styles from "@styles/LeftFeaturedProject.module.css";
 import ProjectImage from "./ProjectImage";
 
 const LeftFeaturedProject = (props) => (
