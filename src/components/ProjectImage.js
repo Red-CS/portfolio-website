@@ -1,4 +1,4 @@
-import supabase from "../../pages/api/_base";
+import supabase from "@api/_supabase";
 import { useEffect, useState } from "react";
 
 export default function ProjectImage(props) {

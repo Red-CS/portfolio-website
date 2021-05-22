@@ -1,5 +1,5 @@
 /** Prisma Client */
-import supabase from "./_base.js";
+import supabase from "./_supabase.js";
 
 /*
 Refer: https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
