@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function ProjectImage(props) {
   const imageSrc = props.imageSrc;
-  const DEFAULT_IMAGE_PATH = "/img/2020-08-09.png";
+  const DEFAULT_IMAGE_PATH = "/img/DefaultProjectImage.png";
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {

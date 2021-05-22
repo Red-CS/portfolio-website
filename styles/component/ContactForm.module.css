@@ -11,7 +11,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 45vw;
-  background-image: url("../../public/img/img1_1.jpg");
+  background-image: url("@img/ContactPageImage.jpg");
 }
 
 .logo {
