@@ -1,17 +1,23 @@
-.project-elem {
+.project-entry {
   background-color: var(--color-black-lighter);
   color: var(--color-white);
   font-family: Proxima-Nova;
   display: flex;
   flex-direction: column;
-  grid-template-rows: 25% auto 25%;
+  justify-content: space-between;
   border-radius: var(--border-radius);
   padding: 20px;
   transition: var(--transition);
 }
 
-.project-elem:hover {
+.project-entry:hover {
   transform: translateY(-7px);
+}
+
+.project-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-top {

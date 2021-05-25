@@ -1,0 +1,17 @@
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin: 25px 0px 10px;
+  padding: 0px;
+  list-style: none;
+}
+
+.tech-list li {
+  font-size: 13px;
+  font-family: SF Mono Light;
+  margin: 0px 20px 5px 0px;
+  color: var(--color-gray);
+  padding: 0px 5px;
+}

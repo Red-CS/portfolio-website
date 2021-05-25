@@ -39,8 +39,8 @@ export default function ProjectArchive(props) {
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit cum
         consectetur ea labore hic nemo corporis corrupti a! Saepe repudiandae et
         optio veniam fugit dignissimos deleniti."
-          github_link="gh"
-          project_link=""
+          github_link="d"
+          project_link="d"
         />
         {projectDataArray.map((project) => {
           return <Fragment key={project.props.title}>{project}</Fragment>;
