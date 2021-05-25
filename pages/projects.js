@@ -3,14 +3,14 @@ import Head from "next/head";
 
 // Components
 import Header from "@components/Header";
-import ContactForm from "@components/ContactForm";
+import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
 
 export default function Contact() {
   return (
     <div>
       <Head>
-        <title>Contact | Red Williams</title>
+        <title>Projects | Red Williams</title>
         <meta charSet="utf-8" />
         <meta
           name="description"
@@ -54,7 +54,7 @@ export default function Contact() {
       </Head>
       <main>
         <Header />
-        <ContactForm />
+        <ProjectArchive />
         <Footer />
       </main>
     </div>

@@ -77,14 +77,13 @@
   content: "0" counter(item);
   display: block;
   margin-bottom: 5px;
-  color: var(--color-white);
+  color: var(--color-gray);
 }
 
 .aside-ol a {
   display: inline-block;
   text-decoration: none;
   text-decoration-skip-ink: auto;
-  color: inherit;
   position: relative;
   transition: var(--transition);
   cursor: pointer;
