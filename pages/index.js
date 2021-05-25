@@ -9,9 +9,7 @@ import Third from "@components/Third";
 import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 
-// Runs on every request to the server
 export async function getStaticProps() {
-  // TODO: Get url from getStaticProps, and pass it into getServerSideProps
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
