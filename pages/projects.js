@@ -37,7 +37,6 @@ export async function getServerSideProps() {
 }
 
 export default function Projects({ data }) {
-  console.log(data);
   return (
     <div>
       <Head>
