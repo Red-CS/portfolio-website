@@ -6,7 +6,38 @@ import Header from "@components/Header";
 import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
 
-export default function Contact() {
+export async function getServerSideProps() {
+  // Preview Deployments
+  var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+
+  // Production
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
+    url = "https://www.redwilliams.dev";
+  }
+
+  // Development
+  else if (process.env.NODE_ENV === "development") {
+    url = "http://localhost:3000";
+  }
+
+  // Fetch all project data
+  const featuredProjects = await fetch(`${url}/api/projects`, {
+    method: "POST",
+    body: JSON.stringify({ featured: null }),
+  });
+
+  const projectInfo = await featuredProjects.json();
+
+  // Data to send as props
+  const data = {
+    url: url,
+    projectData: projectInfo.projects,
+  };
+  return { props: { data } };
+}
+
+export default function Projects({ data }) {
+  console.log(data);
   return (
     <div>
       <Head>
@@ -54,7 +85,7 @@ export default function Contact() {
       </Head>
       <main>
         <Header />
-        <ProjectArchive />
+        <ProjectArchive url={data.url} projectData={data.projectData} />
         <Footer />
       </main>
     </div>

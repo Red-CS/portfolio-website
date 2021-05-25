@@ -73,44 +73,6 @@ export default function ThirdSection(props) {
         {featuredProjectsArray.map((fp) => {
           return <Fragment key={fp.props.title}>{fp}</Fragment>;
         })}
-        {/* <LeftFeaturedProject
-          title={props.projectData[0].project_name}
-          descriptionParagraph={props.projectData[0].project_description}
-          tech1={props.projectData[0].tech_one}
-          tech2={props.projectData[0].tech_two}
-          tech3={props.projectData[0].tech_three}
-          tech4={props.projectData[0].tech_four}
-          githubLink={
-            props.projectData[0].github_link.indexOf("https://") == 0
-              ? props.projectData[0].github_link
-              : `https://${props.projectData[0].github_link}`
-          }
-          projectLink={
-            props.projectData[0].project_link.indexOf("https://") == 0
-              ? props.projectData[0].project_link
-              : `https://${props.projectData[0].project_link}`
-          }
-          imageSrc={objUrl}
-        />
-        <RightFeaturedProject
-          title={props.projectData[1].project_name}
-          descriptionParagraph={props.projectData[1].project_description}
-          tech1={props.projectData[1].tech_one}
-          tech2={props.projectData[1].tech_two}
-          tech3={props.projectData[1].tech_three}
-          tech4={props.projectData[1].tech_four}
-          githubLink={
-            props.projectData[1].github_link.indexOf("https://") == 0
-              ? props.projectData[1].github_link
-              : `https://${props.projectData[1].github_link}`
-          }
-          projectLink={
-            props.projectData[1].project_link.indexOf("https://") == 0
-              ? props.projectData[1].project_link
-              : `https://${props.projectData[1].project_link}`
-          }
-          imageSrc={"/img/2020-08-09.png"}
-        /> */}
         <br />
         <br />
         &lt;/&gt;

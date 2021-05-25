@@ -1,7 +1,19 @@
 import ProjectEntry from "./ProjectEntry";
 import styles from "@styles/ProjectArchive.module.css";
+import { Fragment } from "react";
 
-export default function ProjectArchive() {
+export default function ProjectArchive(props) {
+  var projectDataArray = [];
+
+  for (var i = 0; i < props.projectData.length; i++) {
+    projectDataArray.push(
+      <ProjectEntry
+        title={props.projectData[i].project_name}
+        desc={props.projectData[i].project_description}
+      />
+    );
+  }
+
   return (
     <div className={styles["archive-container"]}>
       <header className={styles["header"]}>
@@ -16,13 +28,9 @@ export default function ProjectArchive() {
         consectetur ea labore hic nemo corporis corrupti a! Saepe repudiandae et
         optio veniam fugit dignissimos deleniti."
         />
-        <ProjectEntry />
-        <ProjectEntry />
-        <ProjectEntry />
-        <ProjectEntry />
-        <ProjectEntry />
-        <ProjectEntry />
-        <ProjectEntry />
+        {projectDataArray.map((project) => {
+          return <Fragment key={project.props.title}>{project}</Fragment>;
+        })}
       </ul>
     </div>
   );

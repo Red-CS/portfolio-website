@@ -48,11 +48,18 @@ export default async (req, res) => {
 
     case "POST":
       try {
-        const { data } = await supabase
-          .from(process.env.FEATURED_PROJECT)
-          .select("*")
-          .match({ featured: JSON.parse(req.body).featured });
-        return res.status(200).json({ projects: data });
+        if (JSON.parse(req.body).featured) {
+          const { data } = await supabase
+            .from(process.env.FEATURED_PROJECT)
+            .select("*")
+            .match({ featured: true });
+          return res.status(200).json({ projects: data });
+        } else {
+          const { data } = await supabase
+            .from(process.env.FEATURED_PROJECT)
+            .select("*");
+          return res.status(200).json({ projects: data });
+        }
       } catch (err) {
         return res.status(400).json({ error: err });
       }
