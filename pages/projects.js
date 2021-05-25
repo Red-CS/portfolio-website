@@ -6,7 +6,7 @@ import Header from "@components/Header";
 import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
@@ -33,7 +33,7 @@ export async function getServerSideProps() {
     url: url,
     projectData: projectInfo.projects,
   };
-  return { props: { data } };
+  return { props: { data }, revalidate: 60 };
 }
 
 export default function Projects({ data }) {

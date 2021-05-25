@@ -10,7 +10,7 @@ import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 
 // Runs on every request to the server
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // TODO: Get url from getStaticProps, and pass it into getServerSideProps
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
@@ -38,7 +38,7 @@ export async function getServerSideProps() {
     url: url,
     projectData: projectInfo.projects,
   };
-  return { props: { data } };
+  return { props: { data }, revalidate: 60 };
 }
 
 export default function Main({ data }) {

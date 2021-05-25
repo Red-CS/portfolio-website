@@ -155,6 +155,7 @@ export default async (req, res) => {
       res
         .status(400)
         .json({ message: `Wrong call type, ${req.method} not accepted` });
+      // TODO: Add use cases for each request method
       break;
   }
 };
