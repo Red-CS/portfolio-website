@@ -10,13 +10,14 @@ export default function ProjectArchive(props) {
       <ProjectEntry
         title={props.projectData[i].project_name}
         desc={props.projectData[i].project_description}
-        github_link={
+        techList={props.projectData[i].tech_list}
+        githubLink={
           // Return an empty string if github_link is undefined
           props.projectData[i].github_link
             ? props.projectData[i].github_link
             : ""
         }
-        project_link={
+        projectLink={
           // Return an empty string if project_link is undefined
           props.projectData[i].project_link
             ? props.projectData[i].project_link
@@ -35,13 +36,6 @@ export default function ProjectArchive(props) {
         </p>
       </header>
       <ul className={styles["archive-ul"]}>
-        <ProjectEntry
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit cum
-        consectetur ea labore hic nemo corporis corrupti a! Saepe repudiandae et
-        optio veniam fugit dignissimos deleniti."
-          github_link="d"
-          project_link="d"
-        />
         {projectDataArray.map((project) => {
           return <Fragment key={project.props.title}>{project}</Fragment>;
         })}

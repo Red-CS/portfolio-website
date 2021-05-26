@@ -1,4 +1,5 @@
 .tech-list {
+  font-family: SF Mono Light;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -10,8 +11,15 @@
 
 .tech-list li {
   font-size: 13px;
-  font-family: SF Mono Light;
-  margin: 0px 20px 5px 0px;
-  color: var(--color-gray-lighter);
-  padding: 0px 5px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .tech-list {
+    margin: 10px 0px;
+  }
+
+  .tech-list li {
+    -webkit-text-stroke-width: 0.2px;
+  }
 }

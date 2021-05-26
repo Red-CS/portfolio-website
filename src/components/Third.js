@@ -16,10 +16,7 @@ export default function ThirdSection(props) {
         <LeftFeaturedProject
           title={props.projectData[i].project_name}
           descriptionParagraph={props.projectData[i].project_description}
-          tech1={props.projectData[i].tech_one}
-          tech2={props.projectData[i].tech_two}
-          tech3={props.projectData[i].tech_three}
-          tech4={props.projectData[i].tech_four}
+          techList={props.projectData[i].tech_list}
           githubLink={
             props.projectData[i].github_link.indexOf("https://") == 0
               ? props.projectData[i].github_link
@@ -37,10 +34,7 @@ export default function ThirdSection(props) {
         <RightFeaturedProject
           title={props.projectData[i].project_name}
           descriptionParagraph={props.projectData[i].project_description}
-          tech1={props.projectData[i].tech_one}
-          tech2={props.projectData[i].tech_two}
-          tech3={props.projectData[i].tech_three}
-          tech4={props.projectData[i].tech_four}
+          techList={props.projectData[i].tech_list}
           githubLink={
             props.projectData[i].github_link.indexOf("https://") == 0
               ? props.projectData[i].github_link

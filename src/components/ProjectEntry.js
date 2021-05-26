@@ -15,21 +15,21 @@ export default function ProjectEntry(props) {
           <span className={styles["span-right"]}>
             <a
               href={
-                props.github_link.indexOf("https://") === 0
-                  ? props.github_link
-                  : `https://${props.github_link}`
+                props.githubLink.indexOf("https://") === 0
+                  ? props.githubLink
+                  : `https://${props.githubLink}`
               }
-              style={{ display: props.github_link === "" ? "none" : "inline" }}
+              style={{ display: props.githubLink === "" ? "none" : "inline" }}
             >
               <GithubFeather color="var(--color-gray)" />
             </a>
             <a
               href={
-                props.project_link.indexOf("https://") === 0
-                  ? props.project_link
-                  : `https://${props.project_link}`
+                props.projectLink.indexOf("https://") === 0
+                  ? props.projectLink
+                  : `https://${props.projectLink}`
               }
-              style={{ display: props.project_link === "" ? "none" : "inline" }}
+              style={{ display: props.projectLink === "" ? "none" : "inline" }}
             >
               <ProjectFeather color="var(--color-gray)" />
             </a>
@@ -42,7 +42,11 @@ export default function ProjectEntry(props) {
           {props.desc ? props.desc : "Lorem ipsum dolor sit amet"}
         </p>
       </div>
-      <TechList tech_list_array={["Python", "Java", "Github API", "Node JS"]} />
+      <TechList
+        tech_list_array={props.techList}
+        color="var(--color-gray-lighter)"
+        justify="left"
+      />
     </li>
   );
 }

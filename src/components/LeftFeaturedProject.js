@@ -2,6 +2,7 @@ import styles from "@styles/LeftFeaturedProject.module.css";
 import ProjectImage from "./ProjectImage";
 import GithubFeather from "@components/svg/GithubFeather";
 import ProjectFeather from "@components/svg/ProjectFeather";
+import TechList from "@components/TechList";
 
 const LeftFeaturedProject = (props) => (
   <div className={styles["featured-project"]}>
@@ -13,12 +14,7 @@ const LeftFeaturedProject = (props) => (
           {props.descriptionParagraph}
         </p>
       </div>
-      <ul className={styles["project-tech-list"]}>
-        <li>{props.tech1}</li>
-        <li>{props.tech2}</li>
-        <li>{props.tech3}</li>
-        <li>{props.tech4}</li>
-      </ul>
+      <TechList color="var(--color-black)" tech_list_array={props.techList} />
       <div className={styles["project-links"]}>
         <a target="_blank" href={props.githubLink} rel="noreferrer">
           <GithubFeather color="var(--color-black-lighter)" />

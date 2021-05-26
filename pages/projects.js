@@ -33,7 +33,7 @@ export async function getStaticProps() {
     url: url,
     projectData: projectInfo.projects,
   };
-  return { props: { data }, revalidate: 60 };
+  return { props: { data } };
 }
 
 export default function Projects({ data }) {
