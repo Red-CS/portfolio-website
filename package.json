@@ -1,12 +1,11 @@
 {
-  "name": "test-deployment",
+  "name": "portfolio-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.11.6",
