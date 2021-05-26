@@ -6,7 +6,7 @@ import Header from "@components/Header";
 import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
