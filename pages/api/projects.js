@@ -66,7 +66,7 @@ export default async (req, res) => {
 
     case "PUT":
       try {
-        const newProject = JSON.parse(req.body);
+        const newProject = req.body;
         // Add record
         const { data } = await supabase
           .from(process.env.FEATURED_PROJECT)
