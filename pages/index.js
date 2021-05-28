@@ -9,18 +9,21 @@ import Third from "@components/Third";
 import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 
+// Supabase Client
+import { createClient } from "@supabase/supabase-js";
+
 /*
 TODO - use getStaticProps(), but instead of using the api,
 get the data from Supabase directly
 NOTE - As I understand it, the flow is this:
   - Whenever someone access the website, the code is compiled
 */
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Preview Deployments
-  var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  var url = `https://${process.env.VERCEL_URL}`;
 
   // Production
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
+  if (process.env.VERCEL_ENV == "production") {
     url = "https://www.redwilliams.dev";
   }
 
@@ -30,22 +33,37 @@ export async function getServerSideProps() {
   }
 
   // Fetch project data
-  const featuredProjects = await fetch(`${url}/api/projects`, {
-    method: "POST",
-    body: JSON.stringify({ featured: true }),
-  });
+  // const featuredProjects = await fetch(`${url}/api/projects`, {
+  //   method: "POST",
+  //   body: JSON.stringify({ featured: true }),
+  // });
 
-  const projectInfo = await featuredProjects.json();
+  const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_KEY
+  );
+
+  let { data } = await supabase
+    .from(process.env.FEATURED_PROJECT)
+    .select("*")
+    .match({ featured: true });
+
+  console.log(data);
+  // const projectInfo = data.j
+  // console.log(projectInfo);
+
+  // const projectInfo = await featuredProjects.json();
 
   // Data to send as props
-  const data = {
-    url: url,
-    projectData: projectInfo.projects,
-  };
-  return { props: { data } };
+  // const data = {
+  //   url: url,
+  //   projectData: projectInfo.projects,
+  // };
+  // return { props: { data } };
+  return { props: { passed: { url: url, projectData: data } } };
 }
 
-export default function Main({ data }) {
+export default function Main({ passed }) {
   return (
     <div>
       <Head>
@@ -95,7 +113,7 @@ export default function Main({ data }) {
         <Header />
         <Home />
         <Second />
-        <Third url={data.url} projectData={data.projectData} />
+        <Third url={passed.url} projectData={passed.projectData} />
         <Fourth />
         <Footer />
       </main>
