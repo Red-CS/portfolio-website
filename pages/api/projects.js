@@ -55,6 +55,7 @@ export default async (req, res) => {
             .match({ featured: true });
           return res.status(200).json({ projects: data });
         } else {
+          // Just a normal get request
           const { data } = await supabase
             .from(process.env.FEATURED_PROJECT)
             .select("*");

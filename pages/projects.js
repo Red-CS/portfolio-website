@@ -5,8 +5,9 @@ import Head from "next/head";
 import Header from "@components/Header";
 import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
+import { createClient } from "@supabase/supabase-js";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
@@ -20,23 +21,21 @@ export async function getServerSideProps() {
     url = "http://localhost:3000";
   }
 
-  // Fetch all project data
-  const featuredProjects = await fetch(`${url}/api/projects`, {
-    method: "POST",
-    body: JSON.stringify({ featured: null }),
-  });
+  const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_KEY
+  );
 
-  const projectInfo = await featuredProjects.json();
+  // Fetch all project data
+  const { data } = await supabase
+    .from(process.env.FEATURED_PROJECT)
+    .select("*");
 
   // Data to send as props
-  const data = {
-    url: url,
-    projectData: projectInfo.projects,
-  };
-  return { props: { data } };
+  return { props: { passed: { url: url, projectData: data } }, revalidate: 60 };
 }
 
-export default function Projects({ data }) {
+export default function Projects({ passed }) {
   return (
     <div>
       <Head>
@@ -84,7 +83,7 @@ export default function Projects({ data }) {
       </Head>
       <main>
         <Header />
-        <ProjectArchive url={data.url} projectData={data.projectData} />
+        <ProjectArchive url={passed.url} projectData={passed.projectData} />
         <Footer />
       </main>
     </div>

@@ -13,8 +13,6 @@ import Footer from "@components/Footer";
 import { createClient } from "@supabase/supabase-js";
 
 /*
-TODO - use getStaticProps(), but instead of using the api,
-get the data from Supabase directly
 NOTE - As I understand it, the flow is this:
   - Whenever someone access the website, the code is compiled
 */
@@ -43,23 +41,11 @@ export async function getStaticProps() {
     process.env.SUPABASE_KEY
   );
 
-  let { data } = await supabase
+  const { data } = await supabase
     .from(process.env.FEATURED_PROJECT)
     .select("*")
     .match({ featured: true });
 
-  console.log(data);
-  // const projectInfo = data.j
-  // console.log(projectInfo);
-
-  // const projectInfo = await featuredProjects.json();
-
-  // Data to send as props
-  // const data = {
-  //   url: url,
-  //   projectData: projectInfo.projects,
-  // };
-  // return { props: { data } };
   return { props: { passed: { url: url, projectData: data } } };
 }
 
