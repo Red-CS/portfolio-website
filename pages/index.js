@@ -9,6 +9,12 @@ import Third from "@components/Third";
 import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 
+/*
+TODO - use getStaticProps(), but instead of using the api,
+get the data from Supabase directly
+NOTE - As I understand it, the flow is this:
+  - Whenever someone access the website, the code is compiled
+*/
 export async function getServerSideProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;

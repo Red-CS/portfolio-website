@@ -98,19 +98,26 @@ export default async (req, res) => {
 
     case "PATCH":
       try {
-        const newProject = JSON.parse(req.body);
+        const updatedProject = req.body;
         // TODO Return the right message when
         // a) the only data is the project name: error => null
         // b) The only data is the project name + it is wrong: error => []
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from(process.env.FEATURED_PROJECT)
-          .update(newProject)
-          .match({ project_name: newProject.project_name });
+          .update(updatedProject)
+          .match({ project_name: updatedProject.project_name });
+        // .match(updatedProject);
+        console.log(data);
         console.log(error);
 
-        return res.status(200).json({
-          message: "Successfully updated Featured Project",
-        });
+        if (data.length != 0)
+          return res.status(200).json({
+            message: "Successfully updated Featured Project",
+          });
+        else
+          return res.status(300).json({
+            message: "No update occurred",
+          });
       } catch (err) {
         if (err instanceof SyntaxError) {
           return res.status(400).json({
