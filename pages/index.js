@@ -76,7 +76,10 @@ export async function getStaticProps() {
   }
 
   return {
-    props: { passed: { url: url, projectData: data, imageArr: imageData } },
+    props: {
+      passed: { url: url, projectData: data, imageArr: imageData },
+      revalidate: 60,
+    },
   };
 }
 
