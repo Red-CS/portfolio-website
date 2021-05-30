@@ -1,4 +1,4 @@
-/** Prisma Client */
+/** Supabase Client */
 import supabase from "./_supabase.js";
 
 /*
@@ -103,20 +103,18 @@ export default async (req, res) => {
         // TODO Return the right message when
         // a) the only data is the project name: error => null
         // b) The only data is the project name + it is wrong: error => []
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from(process.env.FEATURED_PROJECT)
           .update(updatedProject)
           .match({ project_name: updatedProject.project_name });
-        // .match(updatedProject);
-        console.log(data);
-        console.log(error);
 
         if (data.length != 0)
           return res.status(200).json({
             message: "Successfully updated Featured Project",
+            updatedProject: data,
           });
         else
-          return res.status(300).json({
+          return res.status(400).json({
             message: "No update occurred",
           });
       } catch (err) {
@@ -132,13 +130,13 @@ export default async (req, res) => {
 
     case "DELETE":
       try {
-        const projectName = JSON.parse(req.body).project_name;
+        const projectName = req.body.project_name;
         // Delete record
         const { data } = await supabase
           .from(process.env.FEATURED_PROJECT)
           .delete()
           .match({ project_name: projectName });
-        if (data.length == 0) {
+        if (data.length === 0) {
           return res.status(400).json({
             message:
               "Nothing was deleted. Ensure that the project name is correct",
@@ -151,7 +149,7 @@ export default async (req, res) => {
       } catch (err) {
         if (err instanceof SyntaxError) {
           return res.status(400).json({
-            message: "Error in adding project, unexpected end of JSON input",
+            message: "Error in deleting project, unexpected end of JSON input",
           });
         }
         return res.status(500).json({

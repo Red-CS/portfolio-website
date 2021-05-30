@@ -41,15 +41,48 @@ export async function getStaticProps() {
     process.env.SUPABASE_KEY
   );
 
+  // let d = (await supabase.storage
+  //   .from("FeaturedProjectMedia")
+  //   .download("Default Project")).data;
+
+  // console.log(d);
+  // const d = await data.arrayBuffer();
+  // const b64 = Buffer.from(d).toString("base64");
+
+  // Get featured projects from database
   const { data } = await supabase
     .from(process.env.FEATURED_PROJECT)
     .select("*")
     .match({ featured: true });
 
-  return { props: { passed: { url: url, projectData: data } } };
+  var imageData = [];
+  for (var i = 0; i < data.length; i++) {
+    try {
+      let imageBlob = (
+        await supabase.storage
+          .from("FeaturedProjectMedia")
+          .download(data[i].project_name)
+      ).data;
+      let imageBuffer = await imageBlob.arrayBuffer();
+
+      // Append base64
+      imageData.push({
+        base64: Buffer.from(imageBuffer).toString("base64"),
+        type: imageBlob.type,
+      });
+    } catch (err) {
+      console.log("Error occurred for " + data[i].project_name);
+    }
+  }
+
+  return {
+    props: { passed: { url: url, projectData: data, imageArr: imageData } },
+  };
 }
 
 export default function Main({ passed }) {
+  // console.log(passed.base);
+  // console.log(window);
   return (
     <div>
       <Head>
@@ -99,7 +132,11 @@ export default function Main({ passed }) {
         <Header />
         <Home />
         <Second />
-        <Third url={passed.url} projectData={passed.projectData} />
+        <Third
+          url={passed.url}
+          projectData={passed.projectData}
+          imageData={passed.imageArr}
+        />
         <Fourth />
         <Footer />
       </main>

@@ -32,7 +32,7 @@ export async function getStaticProps() {
     .select("*");
 
   // Data to send as props
-  return { props: { passed: { url: url, projectData: data } }, revalidate: 60 };
+  return { props: { passed: { url: url, projectData: data } } };
 }
 
 export default function Projects({ passed }) {

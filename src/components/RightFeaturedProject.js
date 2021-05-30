@@ -32,7 +32,11 @@ const RightFeaturedProject = (props) => (
       <a target="_blank" href={props.projectLink} rel="noreferrer">
         <div className={styles["image-container"]}>
           <div className={styles["image-wrapper"]} aria-hidden="true" />
-          <ProjectImage imageSrc={props.title} />
+          {/* <ProjectImage imageSrc={props.title} /> */}
+          <img
+            src={`data:${props.imageData.type};base64,${props.imageData.base64}`}
+            alt="hgfd"
+          />
         </div>
       </a>
     </div>
