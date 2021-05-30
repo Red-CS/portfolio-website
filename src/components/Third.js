@@ -10,7 +10,6 @@ export default function ThirdSection(props) {
   var featuredProjectsArray = [];
 
   for (var i = 0; i < props.projectData.length; i++) {
-    // Left Featured Project
     if (i % 2 == 0) {
       featuredProjectsArray.push(
         <LeftFeaturedProject
@@ -27,7 +26,6 @@ export default function ThirdSection(props) {
               ? props.projectData[i].project_link
               : `https://${props.projectData[i].project_link}`
           }
-          // imageData={props.imageData[i]}
         />
       );
     } else {
@@ -46,7 +44,6 @@ export default function ThirdSection(props) {
               ? props.projectData[i].project_link
               : `https://${props.projectData[i].project_link}`
           }
-          // imageData={props.imageData[i]}
         />
       );
     }
@@ -56,7 +53,6 @@ export default function ThirdSection(props) {
   return (
     <div className={styles[("section", "third-section")]}>
       <div className={styles["my-work"]}>
-        {/* My Work */}
         <h2
           className={styles["section-header"]}
           id={styles["third-section-header"]}

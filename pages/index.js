@@ -30,24 +30,10 @@ export async function getStaticProps() {
     url = "http://localhost:3000";
   }
 
-  // Fetch project data
-  // const featuredProjects = await fetch(`${url}/api/projects`, {
-  //   method: "POST",
-  //   body: JSON.stringify({ featured: true }),
-  // });
-
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_KEY
   );
-
-  // let d = (await supabase.storage
-  //   .from("FeaturedProjectMedia")
-  //   .download("Default Project")).data;
-
-  // console.log(d);
-  // const d = await data.arrayBuffer();
-  // const b64 = Buffer.from(d).toString("base64");
 
   // Get featured projects from database
   const { data } = await supabase
@@ -55,37 +41,15 @@ export async function getStaticProps() {
     .select("*")
     .match({ featured: true });
 
-  // var imageData = [];
-  // for (var i = 0; i < data.length; i++) {
-  //   try {
-  //     let imageBlob = (
-  //       await supabase.storage
-  //         .from("FeaturedProjectMedia")
-  //         .download(data[i].project_name)
-  //     ).data;
-  //     let imageBuffer = await imageBlob.arrayBuffer();
-
-  //     // Append base64
-  //     imageData.push({
-  //       base64: Buffer.from(imageBuffer).toString("base64"),
-  //       type: imageBlob.type,
-  //     });
-  //   } catch (err) {
-  //     console.log("Error occurred for " + data[i].project_name);
-  //   }
-  // }
-
   return {
     props: {
-      passed: { url: url, projectData: data /*, imageArr: imageData */ },
+      passed: { url: url, projectData: data },
       revalidate: 60,
     },
   };
 }
 
 export default function Main({ passed }) {
-  // console.log(passed.base);
-  // console.log(window);
   return (
     <div>
       <Head>
