@@ -27,7 +27,7 @@ export default function ThirdSection(props) {
               ? props.projectData[i].project_link
               : `https://${props.projectData[i].project_link}`
           }
-          imageData={props.imageData[i]}
+          // imageData={props.imageData[i]}
         />
       );
     } else {
@@ -46,7 +46,7 @@ export default function ThirdSection(props) {
               ? props.projectData[i].project_link
               : `https://${props.projectData[i].project_link}`
           }
-          imageData={props.imageData[i]}
+          // imageData={props.imageData[i]}
         />
       );
     }

@@ -55,29 +55,29 @@ export async function getStaticProps() {
     .select("*")
     .match({ featured: true });
 
-  var imageData = [];
-  for (var i = 0; i < data.length; i++) {
-    try {
-      let imageBlob = (
-        await supabase.storage
-          .from("FeaturedProjectMedia")
-          .download(data[i].project_name)
-      ).data;
-      let imageBuffer = await imageBlob.arrayBuffer();
+  // var imageData = [];
+  // for (var i = 0; i < data.length; i++) {
+  //   try {
+  //     let imageBlob = (
+  //       await supabase.storage
+  //         .from("FeaturedProjectMedia")
+  //         .download(data[i].project_name)
+  //     ).data;
+  //     let imageBuffer = await imageBlob.arrayBuffer();
 
-      // Append base64
-      imageData.push({
-        base64: Buffer.from(imageBuffer).toString("base64"),
-        type: imageBlob.type,
-      });
-    } catch (err) {
-      console.log("Error occurred for " + data[i].project_name);
-    }
-  }
+  //     // Append base64
+  //     imageData.push({
+  //       base64: Buffer.from(imageBuffer).toString("base64"),
+  //       type: imageBlob.type,
+  //     });
+  //   } catch (err) {
+  //     console.log("Error occurred for " + data[i].project_name);
+  //   }
+  // }
 
   return {
     props: {
-      passed: { url: url, projectData: data, imageArr: imageData },
+      passed: { url: url, projectData: data /*, imageArr: imageData */ },
       revalidate: 60,
     },
   };
@@ -138,7 +138,7 @@ export default function Main({ passed }) {
         <Third
           url={passed.url}
           projectData={passed.projectData}
-          imageData={passed.imageArr}
+          // imageData={passed.imageArr}
         />
         <Fourth />
         <Footer />
