@@ -33,26 +33,95 @@
   font-family: Gravity-Light;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .mainSection {
-    background-image: url("@img/Quads_cropped.png");
-    background-size: 60%;
-    transform: translateY(20%);
+    background-image: url("@img/Quads_phone.jpg");
+    background-size: contain;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;
     height: 100vh;
-    background-position-x: 50%;
+    background-size: 80%;
+    background-position-x: left;
+    background-position-y: bottom;
   }
 
-  .header {
-    top: 50%;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
+  /* .header {
+    width: 100%;
+    inset: 0;
+    transform: translateY(var(--nav-height));
+    text-align: center;
+  } */
+
+  .headerName {
+    font-size: clamp(1rem, 50px, 5rem);
+    /* text-align: left; */
   }
 
   .headerDescription {
     font-weight: bolder;
+    font-size: clamp(1rem, 10px, 4rem);
+    /* text-align: center; */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainSection {
+    background-size: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .mainSection {
+    background-image: url("@img/Quads_phone.jpg");
+    background-size: contain;
+    display: flex;
+    /* align-items: center; */
+    width: 100%;
+    height: 100vh;
+    background-size: 80%;
+    background-position-x: left;
+    background-position-y: bottom;
+  }
+
+  .header {
+    width: 100%;
+    inset: 0;
+    transform: translateY(var(--nav-height));
+    text-align: center;
+  }
+
+  .headerName {
+    font-size: clamp(1rem, 35px, 4rem);
+    /* text-align: left; */
+  }
+
+  .headerDescription {
+    font-weight: bolder;
+    font-size: clamp(1rem, 10px, 4rem);
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mainSection {
+    background-size: 90%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .mainSection {
+    background-size: 90%;
+  }
+
+  .headerDescription {
+    font-size: 15px;
+    line-height: normal;
+  }
+}
+
+@media screen and (min-height: 924px) {
+  .mainSection {
+    /* background-size: 110%; */
   }
 }
