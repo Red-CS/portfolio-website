@@ -3,10 +3,11 @@ import styles from "@styles/Second.module.css";
 const SecondSection = () => (
   <div className={styles[("section", "second-section")]}>
     <div className={styles["about-me"]}>
-      {/* About Me*/}
       <h2 className={styles[("section-header", "sh-about-me")]}>About Me</h2>
+      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
+        &lt;p class="about-me"&gt;
+      </span>
       <p id={styles["about-me-content"]}>
-        &lt;&gt;
         <br />
         <br />
         Hey there! I am a first-year student at{" "}
@@ -30,8 +31,10 @@ const SecondSection = () => (
         as a pastime.
         <br />
         <br />
-        &lt;/&gt;
       </p>
+      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
+        &lt;/p&gt;
+      </span>
     </div>
   </div>
 );

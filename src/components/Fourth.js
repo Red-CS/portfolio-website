@@ -4,7 +4,6 @@ import VentureListObject from "./VentureListObject";
 const FourthSection = () => (
   <div className={styles[("section", "fourth-section")]}>
     <div className={styles["future-ventures"]}>
-      {/* Future Ventures */}
       <h2
         className={styles["section-header"]}
         id={styles["fourth-section-header"]}
@@ -14,7 +13,7 @@ const FourthSection = () => (
       <h3 className={styles["section-underline"]}>
         Areas in tech I plan to pursure
       </h3>
-      &lt;&gt;
+      &lt;ul class="next-up"&gt;
       <br />
       <br />
       <div className={styles["categories"]}>
@@ -42,7 +41,7 @@ const FourthSection = () => (
       </div>
       <br />
       <br />
-      &lt;/&gt;
+      &lt;/ul&gt;
     </div>
   </div>
 );

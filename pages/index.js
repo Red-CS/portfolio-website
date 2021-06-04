@@ -99,11 +99,7 @@ export default function Main({ passed }) {
         <Header />
         <Home />
         <Second />
-        <Third
-          url={passed.url}
-          projectData={passed.projectData}
-          // imageData={passed.imageArr}
-        />
+        <Third url={passed.url} projectData={passed.projectData} />
         <Fourth />
         <Footer />
       </main>

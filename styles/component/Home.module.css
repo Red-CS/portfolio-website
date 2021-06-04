@@ -119,9 +119,3 @@
     line-height: normal;
   }
 }
-
-@media screen and (min-height: 924px) {
-  .mainSection {
-    /* background-size: 110%; */
-  }
-}

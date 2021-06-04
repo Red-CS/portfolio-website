@@ -1,6 +1,6 @@
 .second-section {
-  background-color: #191919;
-  color: #f4f4f4;
+  background-color: var(--color-black);
+  color: var(--color-white);
   z-index: 0;
 }
 
@@ -54,5 +54,6 @@
     text-align: left;
     font-size: 18px;
     letter-spacing: 0.08em;
+    padding: 0px 15px;
   }
 }

@@ -59,15 +59,17 @@ export default function ThirdSection(props) {
         >
           My Work
         </h2>
-        &lt;&gt;
+        &lt;ul class="noteworthy-projects"&gt;
         <br />
         <br />
-        {featuredProjectsArray.map((fp) => {
-          return <Fragment key={fp.props.title}>{fp}</Fragment>;
-        })}
+        <div className={styles["featured-projects"]}>
+          {featuredProjectsArray.map((fp) => {
+            return <Fragment key={fp.props.title}>{fp}</Fragment>;
+          })}
+        </div>
         <br />
         <br />
-        &lt;/&gt;
+        &lt;/ul&gt;
       </div>
     </div>
   );

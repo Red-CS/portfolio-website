@@ -2,7 +2,7 @@
   border: none;
   padding-top: 20px;
   background-color: #ffffff;
-  color: #191919;
+  color: var(--color-black);
 }
 
 .future-ventures {
@@ -48,8 +48,21 @@
     margin-right: 0px;
   }
 
+  #fourth-section-header {
+    padding-bottom: 0px;
+  }
+
+  .section-header {
+    line-height: 1.3em;
+  }
+
+  .section-underline {
+    margin-top: 0;
+  }
+
   .categories {
     flex-direction: column;
     justify-content: space-between;
+    padding: 0px 15px;
   }
 }
