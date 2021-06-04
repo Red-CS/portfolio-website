@@ -1,11 +1,12 @@
 import Image from "next/image";
 import styles from "@styles/Footer.module.css";
+import Logo from "@components/svg/Logo";
 
 const Footer = () => (
   <div className={styles["footer"]}>
     <div className={styles["stay-connected"]}>
-      {/* Stay Connected */}
       <h2>Stay Connected</h2>
+      <Logo color="#f4f4f4" />
       <div className={styles["socials-bottom"]}>
         <ul>
           <li>

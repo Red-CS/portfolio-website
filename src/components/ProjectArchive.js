@@ -35,11 +35,17 @@ export default function ProjectArchive(props) {
           A running list of some of my projects
         </p>
       </header>
+      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
+        &lt;table class="software-archive"&gt;
+      </span>
       <ul className={styles["archive-ul"]}>
         {projectDataArray.map((project) => {
           return <Fragment key={project.props.title}>{project}</Fragment>;
         })}
       </ul>
+      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
+        &lt;/table&gt;
+      </span>
     </div>
   );
 }

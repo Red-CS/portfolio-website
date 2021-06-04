@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
 import styles from "@styles/ContactForm.module.css";
-import Logo from "./Logo";
 
 export default function ContactForm() {
   const name = useRef("");
@@ -125,7 +124,6 @@ export default function ContactForm() {
               </div>
             </div>
           </form>
-          <Logo />
         </div>
       </div>
     </div>
