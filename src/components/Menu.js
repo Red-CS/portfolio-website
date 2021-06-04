@@ -134,7 +134,7 @@ function Menu() {
               </Link>
             </li>
             <li>
-              <Link href="/TBD">
+              <Link href="/TBA">
                 <a className="link-hover">TBD</a>
               </Link>
             </li>
