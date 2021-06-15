@@ -3,8 +3,10 @@ import Head from "next/head";
 
 // Components
 import Header from "@components/Header";
-import ProjectArchive from "@components/ProjectArchive";
+import ProjectEntry from "@components/ProjectEntry";
 import Footer from "@components/Footer";
+
+// Database
 import { createClient } from "@supabase/supabase-js";
 
 // Styles
@@ -86,7 +88,6 @@ export default function Projects({ passed }) {
       </Head>
       <main>
         <Header />
-        <ProjectArchive url={passed.url} projectData={passed.projectData} />
         <div className={styles["archive-container"]}>
           <header className={styles["project-header"]}>
             <h2 className={styles["archive-title"]}>Repository Archive</h2>
@@ -97,15 +98,31 @@ export default function Projects({ passed }) {
           <span className="section-tag">
             &lt;table class="software-archive"&gt;
           </span>
-          <ul>
-            {/* 
-            Main List here
-            */}
+          <ul className={styles["archive-ul"]}>
+            {passed.projectData.map((project, index) => {
+              console.log(project.project_name);
+              return (
+                <ProjectEntry
+                  title={project.project_name}
+                  desc={project.project_description}
+                  techList={project.tech_list}
+                  githubLink={
+                    // Return an empty string if github_link is undefined
+                    project.github_link ? project.github_link : ""
+                  }
+                  projectLink={
+                    // Return an empty string if github_link is undefined
+                    project.project_link ? project.project_link : ""
+                  }
+                  key={index}
+                />
+              );
+            })}
           </ul>
           <span className="section-tag">&lt;/table&gt;</span>
         </div>
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }
