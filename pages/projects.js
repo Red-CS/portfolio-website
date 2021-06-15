@@ -10,14 +10,14 @@ import Footer from "@components/Footer";
 import { createClient } from "@supabase/supabase-js";
 
 // Styles
-import styles from "@styles/../page/Projects.module.css";
+import styles from "@styles/../pages/Projects.module.css";
 
 export async function getStaticProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
   // Production
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV == "production") {
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
     url = "https://www.redwilliams.dev";
   }
 
