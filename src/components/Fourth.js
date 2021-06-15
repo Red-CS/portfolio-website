@@ -13,7 +13,7 @@ const FourthSection = () => (
       <h3 className={styles["section-underline"]}>
         Areas in tech I plan to pursure
       </h3>
-      &lt;ul class="next-up"&gt;
+      <span className="section-tag">&lt;ul class="next-up"&gt;</span>
       <br />
       <br />
       <div className={styles["categories"]}>
@@ -41,7 +41,7 @@ const FourthSection = () => (
       </div>
       <br />
       <br />
-      &lt;/ul&gt;
+      <span className="section-tag">&lt;/ul&gt;</span>
     </div>
   </div>
 );

@@ -7,6 +7,9 @@ import ProjectArchive from "@components/ProjectArchive";
 import Footer from "@components/Footer";
 import { createClient } from "@supabase/supabase-js";
 
+// Styles
+import styles from "@styles/../page/Projects.module.css";
+
 export async function getStaticProps() {
   // Preview Deployments
   var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
@@ -84,6 +87,23 @@ export default function Projects({ passed }) {
       <main>
         <Header />
         <ProjectArchive url={passed.url} projectData={passed.projectData} />
+        <div className={styles["archive-container"]}>
+          <header className={styles["project-header"]}>
+            <h2 className={styles["archive-title"]}>Repository Archive</h2>
+            <p className={styles["archive-desc"]}>
+              A running list of some of my projects
+            </p>
+          </header>
+          <span className="section-tag">
+            &lt;table class="software-archive"&gt;
+          </span>
+          <ul>
+            {/* 
+            Main List here
+            */}
+          </ul>
+          <span className="section-tag">&lt;/table&gt;</span>
+        </div>
         <Footer />
       </main>
     </div>

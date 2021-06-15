@@ -4,9 +4,7 @@ const SecondSection = () => (
   <div className={styles[("section", "second-section")]}>
     <div className={styles["about-me"]}>
       <h2 className={styles[("section-header", "sh-about-me")]}>About Me</h2>
-      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
-        &lt;p class="about-me"&gt;
-      </span>
+      <span className="section-tag">&lt;p class="about-me"&gt;</span>
       <p id={styles["about-me-content"]}>
         <br />
         <br />
@@ -32,9 +30,7 @@ const SecondSection = () => (
         <br />
         <br />
       </p>
-      <span style={{ fontSize: "15px", fontFamily: "SF Mono Light" }}>
-        &lt;/p&gt;
-      </span>
+      <span className="section-tag">&lt;/p&gt;</span>
     </div>
   </div>
 );

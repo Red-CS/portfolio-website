@@ -1,7 +1,7 @@
 import styles from "@styles/Third.module.css";
+import { Fragment } from "react";
 import LeftFeaturedProject from "./LeftFeaturedProject";
 import RightFeaturedProject from "./RightFeaturedProject";
-import { Fragment } from "react";
 
 /**
  * @returns Component for the Third Section (Project Section) of the site
@@ -59,7 +59,9 @@ export default function ThirdSection(props) {
         >
           My Work
         </h2>
-        &lt;ul class="noteworthy-projects"&gt;
+        <span className="section-tag">
+          &lt;ul class="noteworthy-projects"&gt;
+        </span>
         <br />
         <br />
         <div className={styles["featured-projects"]}>
@@ -69,7 +71,7 @@ export default function ThirdSection(props) {
         </div>
         <br />
         <br />
-        &lt;/ul&gt;
+        <span className="section-tag">&lt;/ul&gt;</span>
       </div>
     </div>
   );

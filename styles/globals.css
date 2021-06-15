@@ -129,6 +129,11 @@ h3 {
   user-select: none;
 }
 
+span.section-tag {
+  font-family: SF Mono Light;
+  font-size: 15px;
+}
+
 .section {
   padding: 40px;
 }
