@@ -1,54 +1,10 @@
 import styles from "@styles/Third.module.css";
-import { Fragment } from "react";
 import LeftFeaturedProject from "./LeftFeaturedProject";
-import RightFeaturedProject from "./RightFeaturedProject";
 
 /**
  * @returns Component for the Third Section (Project Section) of the site
  */
 export default function ThirdSection(props) {
-  var featuredProjectsArray = [];
-
-  for (var i = 0; i < props.projectData.length; i++) {
-    if (i % 2 == 0) {
-      featuredProjectsArray.push(
-        <LeftFeaturedProject
-          title={props.projectData[i].project_name}
-          descriptionParagraph={props.projectData[i].project_description}
-          techList={props.projectData[i].tech_list}
-          githubLink={
-            props.projectData[i].github_link.indexOf("https://") == 0
-              ? props.projectData[i].github_link
-              : `https://${props.projectData[i].github_link}`
-          }
-          projectLink={
-            props.projectData[i].project_link.indexOf("https://") == 0
-              ? props.projectData[i].project_link
-              : `https://${props.projectData[i].project_link}`
-          }
-        />
-      );
-    } else {
-      featuredProjectsArray.push(
-        <RightFeaturedProject
-          title={props.projectData[i].project_name}
-          descriptionParagraph={props.projectData[i].project_description}
-          techList={props.projectData[i].tech_list}
-          githubLink={
-            props.projectData[i].github_link.indexOf("https://") == 0
-              ? props.projectData[i].github_link
-              : `https://${props.projectData[i].github_link}`
-          }
-          projectLink={
-            props.projectData[i].project_link.indexOf("https://") == 0
-              ? props.projectData[i].project_link
-              : `https://${props.projectData[i].project_link}`
-          }
-        />
-      );
-    }
-  }
-
   //TODO Handle logic if request sends empty string for a field
   return (
     <div className={styles[("section", "third-section")]}>
@@ -65,8 +21,25 @@ export default function ThirdSection(props) {
         <br />
         <br />
         <div className={styles["featured-projects"]}>
-          {featuredProjectsArray.map((fp) => {
-            return <Fragment key={fp.props.title}>{fp}</Fragment>;
+          {props.projectData.map((project, index) => {
+            return (
+              <LeftFeaturedProject
+                title={project.project_name}
+                descriptionParagraph={project.project_description}
+                techList={project.tech_list}
+                githubLink={
+                  project.github_link.indexOf("https://") == 0
+                    ? project.github_link
+                    : `https://${project.github_link}`
+                }
+                projectLink={
+                  project.project_link.indexOf("https://") == 0
+                    ? project.project_link
+                    : `https://${project.project_link}`
+                }
+                key={index}
+              />
+            );
           })}
         </div>
         <br />
