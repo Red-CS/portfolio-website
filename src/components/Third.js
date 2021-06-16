@@ -18,8 +18,6 @@ export default function ThirdSection(props) {
         <span className="section-tag">
           &lt;ul class="noteworthy-projects"&gt;
         </span>
-        <br />
-        <br />
         <div className={styles["featured-projects"]}>
           {props.projectData.map((project, index) => {
             return (
@@ -42,8 +40,6 @@ export default function ThirdSection(props) {
             );
           })}
         </div>
-        <br />
-        <br />
         <span className="section-tag">&lt;/ul&gt;</span>
       </div>
     </div>

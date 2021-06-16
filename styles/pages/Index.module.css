@@ -1,0 +1,177 @@
+/* ------------------------ Index Page General Styles ----------------------- */
+.section-content {
+  padding: 60px 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.section-header {
+  text-transform: uppercase;
+}
+
+/* --------------------------- Main Section Styles -------------------------- */
+
+.main-section {
+  width: auto;
+  height: 100vh;
+  background-image: url("@img/Quads_main.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 45%;
+  z-index: 0;
+}
+
+.main-section-content {
+  width: 380px;
+  height: auto;
+  top: 30%;
+  right: 10%;
+  position: absolute;
+  text-align: right;
+}
+
+.main-section-name {
+  font-size: 60px;
+  text-align: right;
+  line-height: 1em;
+  display: inline;
+  font-family: Gravity-Light;
+  text-transform: uppercase;
+}
+
+.main-section-description {
+  text-align: right;
+  font-size: 18px;
+  z-index: 0;
+  font-family: Gravity-Light;
+}
+
+@media screen and (max-width: 992px) {
+  .main-section {
+    background-image: url("@img/Quads_phone.jpg");
+    background-size: contain;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-size: 80%;
+    background-position-x: left;
+    background-position-y: bottom;
+  }
+
+  .main-section-name {
+    font-size: clamp(1rem, 50px, 5rem);
+  }
+
+  .main-section-description {
+    font-weight: bolder;
+    font-size: clamp(1rem, 10px, 4rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-section {
+    background-size: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main-section {
+    background-image: url("@img/Quads_phone.jpg");
+    background-size: contain;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-size: 80%;
+    background-position-x: left;
+    background-position-y: bottom;
+  }
+
+  .main-section-content {
+    width: 100%;
+    inset: 0;
+    transform: translateY(var(--nav-height));
+    text-align: center;
+  }
+
+  .main-section-name {
+    font-size: clamp(1rem, 35px, 4rem);
+  }
+
+  .main-section-description {
+    font-weight: bolder;
+    font-size: clamp(1rem, 10px, 4rem);
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-section {
+    background-size: 90%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .main-section {
+    background-size: 90%;
+  }
+
+  .main-section-description {
+    font-size: 15px;
+    line-height: normal;
+  }
+}
+
+/* -------------------------- Second Section Styles ------------------------- */
+
+.second-section {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  z-index: 0;
+}
+
+.about-me {
+  text-align: justify;
+}
+
+.link-hover {
+  display: inline-block;
+}
+
+.link-hover:after {
+  background: none repeat scroll 0px 0px transparent;
+  bottom: 0px;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0px;
+  position: relative;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0px;
+  transform: translateY(-3px);
+}
+
+.link-hover:hover:after {
+  width: 100%;
+  left: 0px;
+}
+
+.second-section p {
+  padding: 20px 0px 60px;
+  font-family: SF Mono Light;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .section-content p {
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    padding: 0px 15px;
+  }
+}
