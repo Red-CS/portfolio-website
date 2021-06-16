@@ -1,5 +1,5 @@
 import styles from "@styles/Third.module.css";
-import LeftFeaturedProject from "./LeftFeaturedProject";
+import FeaturedProject from "./FeaturedProject";
 
 /**
  * @returns Component for the Third Section (Project Section) of the site
@@ -23,7 +23,7 @@ export default function ThirdSection(props) {
         <div className={styles["featured-projects"]}>
           {props.projectData.map((project, index) => {
             return (
-              <LeftFeaturedProject
+              <FeaturedProject
                 title={project.project_name}
                 descriptionParagraph={project.project_description}
                 techList={project.tech_list}

@@ -2,7 +2,6 @@ import styles from "@styles/ProjectEntry.module.css";
 import GithubFeather from "@components/svg/GithubFeather";
 import ProjectFeather from "@components/svg/ProjectFeather";
 import FolderIcon from "@components/svg/FolderIcon";
-import TechList from "@components/TechList";
 
 export default function ProjectEntry(props) {
   return (
@@ -42,11 +41,11 @@ export default function ProjectEntry(props) {
           {props.desc ? props.desc : "Lorem ipsum dolor sit amet"}
         </p>
       </div>
-      <TechList
-        tech_list_array={props.techList}
-        color="var(--color-gray-lighter)"
-        justify="left"
-      />
+      <ul className={styles["tech-list"]}>
+        {props.techList.map((tech, index) => {
+          return <li key={index}>{tech}</li>;
+        })}
+      </ul>
     </li>
   );
 }

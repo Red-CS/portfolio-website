@@ -68,3 +68,33 @@
   font-size: 17px;
   margin-top: 0;
 }
+
+.tech-list {
+  font-family: SF Mono Light;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin: 25px 0px 10px;
+  padding: 0px;
+  list-style: none;
+  color: var(--color-gray-lighter);
+}
+
+.tech-list li {
+  font-size: 13px;
+  white-space: nowrap;
+  margin: 0px 20px 5px 0px;
+}
+
+@media (max-width: 768px) {
+  .tech-list {
+    margin: 10px 0px;
+  }
+
+  .tech-list li {
+    margin: 0px 10px 5px 0px;
+    -webkit-text-stroke-width: 0.2px;
+  }
+}
