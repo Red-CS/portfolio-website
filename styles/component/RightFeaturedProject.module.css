@@ -226,6 +226,10 @@
     box-shadow: none;
   }
 
+  .project-image a {
+    height: 100%;
+  }
+
   .project-image:hover {
     filter: none;
   }
