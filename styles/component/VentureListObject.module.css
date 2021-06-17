@@ -1,16 +1,17 @@
+.venture-object {
+  position: relative;
+}
+
 .venture-name {
   color: var(--color-black);
   width: fit-content;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   padding-left: 5px;
+  margin-bottom: 0px;
   letter-spacing: 0;
   font-style: italic;
   font-family: Calibre;
   font-size: 24px;
-}
-
-.venture-object {
-  position: relative;
 }
 
 .venture-list {
@@ -29,6 +30,14 @@
 
 @media (max-width: 992px) {
   .venture-object {
-    padding: 30px 0px;
+    padding: 10px 0px;
+  }
+
+  .venture-object:first-of-type {
+    padding: 30px 0px 0px 0px;
+  }
+
+  .venture-object:last-of-type {
+    padding: 0px 0px 30px 0px;
   }
 }

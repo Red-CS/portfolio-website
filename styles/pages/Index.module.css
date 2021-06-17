@@ -209,3 +209,63 @@
     padding: 0px 15px;
   }
 }
+
+/* -------------------- Fourth Section / Future Ventures -------------------- */
+
+.fourth-section {
+  border: none;
+  padding-top: 20px;
+  background-color: #ffffff;
+  color: var(--color-black);
+}
+
+.future-ventures {
+  padding: 60px 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: SF Mono Light;
+  font-size: 15px;
+}
+
+#fourth-section-header {
+  font-family: Gravity-Light;
+  padding-bottom: 10px;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.venture-list {
+  list-style-position: inside;
+}
+
+.venture-list li {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 992px) {
+  .future-ventures {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  #fourth-section-header {
+    padding-bottom: 0px;
+  }
+
+  .section-header {
+    line-height: 1.3em;
+  }
+
+  .categories {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px 15px;
+  }
+}

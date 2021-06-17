@@ -9,6 +9,7 @@ import Third from "@components/Third";
 import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 import FeaturedProject from "@components/FeaturedProject";
+import VentureListObject from "@components/VentureListObject";
 
 // Styles
 import styles from "@styles/../pages/Index.module.css";
@@ -186,8 +187,42 @@ export default function Main({ passed }) {
         </div>
 
         {/* -------------------- Fourth Section / Future Ventures -------------------- */}
+        {/* <Fourth /> */}
+        <div className={styles[("section", "fourth-section")]}>
+          <div className={styles["future-ventures"]}>
+            <h2
+              className={styles["section-header"]}
+              id={styles["fourth-section-header"]}
+            >
+              Future Ventures
+            </h2>
+            <span className="section-tag">&lt;ul class="next-up"&gt;</span>
+            <div className={styles["categories"]}>
+              <VentureListObject
+                ventureName="Programming"
+                listItem1="Low Level Programming"
+                listItem2="Machine Learning"
+                listItem3='Coding "Best Practices"'
+              />
 
-        <Fourth />
+              <VentureListObject
+                ventureName="Software Development"
+                listItem1="Javascript Frameworks"
+                listItem2="Typescript"
+                listItem3="UX/UI Design and Prototyping"
+                listItem4="SVG Animation"
+              />
+
+              <VentureListObject
+                ventureName="Electronics"
+                listItem1="Microcontrollers (Arduino)"
+                listItem2="Circuitry"
+                listItem3="Raspberry Pi"
+              />
+            </div>
+            <span className="section-tag">&lt;/ul&gt;</span>
+          </div>
+        </div>
         <Footer />
       </main>
     </div>
