@@ -3,10 +3,6 @@ import Head from "next/head";
 
 // Components
 import Header from "@components/Header";
-import Home from "@components/Home";
-import Second from "@components/Second";
-import Third from "@components/Third";
-import Fourth from "@components/Fourth";
 import Footer from "@components/Footer";
 import FeaturedProject from "@components/FeaturedProject";
 import VentureListObject from "@components/VentureListObject";
@@ -118,7 +114,6 @@ export default function Main({ passed }) {
         </div>
 
         {/* ------------------------ Second Section / About Me ----------------------- */}
-        {/* <Second /> */}
         <div className={styles[("section", "second-section")]}>
           <div className={styles[("about-me", "section-content")]}>
             <h2 className={styles["section-header"]}>About Me</h2>
@@ -153,7 +148,6 @@ export default function Main({ passed }) {
         </div>
 
         {/* -------------------- Third Section / Featured Projects ------------------- */}
-        {/* <Third url={passed.url} projectData={passed.projectData} /> */}
         <div className={styles[("section", "third-section")]}>
           <div className={styles["my-work"]}>
             <h2 className={styles["section-header"]}>My Work</h2>
@@ -187,7 +181,6 @@ export default function Main({ passed }) {
         </div>
 
         {/* -------------------- Fourth Section / Future Ventures -------------------- */}
-        {/* <Fourth /> */}
         <div className={styles[("section", "fourth-section")]}>
           <div className={styles["future-ventures"]}>
             <h2
