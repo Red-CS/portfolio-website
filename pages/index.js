@@ -18,19 +18,7 @@ NOTE - As I understand it, the flow is this:
   - Whenever someone access the website, the code is compiled
 */
 export async function getStaticProps() {
-  // Preview Deployments
-  var url = `https://${process.env.VERCEL_URL}`;
-
-  // Production
-  if (process.env.VERCEL_ENV == "production") {
-    url = "https://www.redwilliams.dev";
-  }
-
-  // Development
-  else if (process.env.NODE_ENV === "development") {
-    url = "http://localhost:3000";
-  }
-
+  // Create Client
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_KEY
@@ -42,15 +30,15 @@ export async function getStaticProps() {
     .select("*")
     .match({ featured: true });
 
-  return {
-    props: {
-      passed: { url: url, projectData: data },
-      revalidate: 60,
-    },
-  };
+  return { props: { projectData: data }, revalidate: 60 };
 }
 
-export default function Main({ passed }) {
+/**
+ * Index Page
+ * @param {Array<object>} projectData
+ * @returns Index Page of the Website
+ */
+export default function Index({ projectData }) {
   return (
     <div>
       <Head>
@@ -158,7 +146,7 @@ export default function Main({ passed }) {
               &lt;ul class="noteworthy-projects"&gt;
             </span>
             <div className={styles["featured-projects"]}>
-              {passed.projectData.map((project, index) => {
+              {projectData.map((project, index) => {
                 return (
                   <FeaturedProject
                     title={project.project_name}

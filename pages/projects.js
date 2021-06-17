@@ -13,19 +13,7 @@ import { createClient } from "@supabase/supabase-js";
 import styles from "@styles/../pages/Projects.module.css";
 
 export async function getStaticProps() {
-  // Preview Deployments
-  var url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-
-  // Production
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
-    url = "https://www.redwilliams.dev";
-  }
-
-  // Development
-  else if (process.env.NODE_ENV === "development") {
-    url = "http://localhost:3000";
-  }
-
+  // Instantiate Client
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_KEY
@@ -36,11 +24,16 @@ export async function getStaticProps() {
     .from(process.env.FEATURED_PROJECT)
     .select("*");
 
-  // Data to send as props
-  return { props: { passed: { url: url, projectData: data } }, revalidate: 60 };
+  // Data to pass as props
+  return { props: { projectData: data }, revalidate: 60 };
 }
 
-export default function Projects({ passed }) {
+/**
+ * Projects Page
+ * @param {Array<object>} projectData
+ * @returns Project Page of the Website
+ */
+export default function Projects({ projectData }) {
   return (
     <div>
       <Head>
@@ -99,8 +92,7 @@ export default function Projects({ passed }) {
             &lt;table class="software-archive"&gt;
           </span>
           <ul className={styles["archive-ul"]}>
-            {passed.projectData.map((project, index) => {
-              console.log(project.project_name);
+            {projectData.map((project, index) => {
               return (
                 <ProjectEntry
                   title={project.project_name}
