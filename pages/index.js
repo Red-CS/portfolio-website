@@ -8,15 +8,11 @@ import FeaturedProject from "@components/FeaturedProject";
 import VentureListObject from "@components/VentureListObject";
 
 // Styles
-import styles from "@styles/../pages/Index.module.css";
+import styles from "@styles/pages/Index.module.css";
 
 // Supabase Client
 import { createClient } from "@supabase/supabase-js";
 
-/*
-NOTE - As I understand it, the flow is this:
-  - Whenever someone access the website, the code is compiled
-*/
 export async function getStaticProps() {
   // Create Client
   const supabase = createClient(
