@@ -108,7 +108,10 @@ export default function Main({ passed }) {
               Williams
             </h1>
             <h3 className={styles["main-section-description"]}>
-              <span>Computer Science and Engineering</span>
+              <span>
+                Exploring Computer Science and solving problems through logic
+                and code. Engineering student in Blacksburg, Virginia
+              </span>
             </h3>
           </div>
         </div>
@@ -122,7 +125,7 @@ export default function Main({ passed }) {
               <br />
               <br />
               Hey there! I am a first-year student at{" "}
-              <a className={styles["link-hover"]} href="https://www.vt.edu/">
+              <a className={"link-hover"} href="https://www.vt.edu/">
                 Virginia Tech
               </a>{" "}
               studying under the college of General Engineering. I have been

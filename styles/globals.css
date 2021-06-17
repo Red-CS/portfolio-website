@@ -91,7 +91,7 @@ a:hover {
   height: 2px;
   left: 0px;
   position: relative;
-  background: #fff;
+  background-color: var(--color-gray-lighter);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0px;
   transform: translateY(-3px);

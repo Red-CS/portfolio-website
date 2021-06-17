@@ -133,29 +133,6 @@
   text-align: justify;
 }
 
-.link-hover {
-  display: inline-block;
-}
-
-.link-hover:after {
-  background: none repeat scroll 0px 0px transparent;
-  bottom: 0px;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 0px;
-  position: relative;
-  background: #fff;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0px;
-  transform: translateY(-3px);
-}
-
-.link-hover:hover:after {
-  width: 100%;
-  left: 0px;
-}
-
 .second-section p {
   padding: 20px 0px 60px;
   font-family: SF Mono Light;
