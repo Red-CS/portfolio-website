@@ -1,4 +1,4 @@
-import styles from "@styles/FeaturedProject.module.css";
+import styles from "@styles/component/FeaturedProject.module.css";
 import ProjectImage from "./ProjectImage";
 import GithubFeather from "@components/svg/GithubFeather";
 import ProjectFeather from "@components/svg/ProjectFeather";

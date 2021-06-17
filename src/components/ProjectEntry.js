@@ -1,4 +1,4 @@
-import styles from "@styles/ProjectEntry.module.css";
+import styles from "@styles/component/ProjectEntry.module.css";
 import GithubFeather from "@components/svg/GithubFeather";
 import ProjectFeather from "@components/svg/ProjectFeather";
 import FolderIcon from "@components/svg/FolderIcon";

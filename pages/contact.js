@@ -12,7 +12,7 @@ import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
 
 // Styles
-import styles from "@styles/../pages/Contact.module.css";
+import styles from "@styles/pages/Contact.module.css";
 
 export default function Contact() {
   const name = useRef("");

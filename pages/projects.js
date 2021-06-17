@@ -10,7 +10,7 @@ import Footer from "@components/Footer";
 import { createClient } from "@supabase/supabase-js";
 
 // Styles
-import styles from "@styles/pagesProjects.module.css";
+import styles from "@styles/pages/Projects.module.css";
 
 export async function getStaticProps() {
   // Instantiate Client

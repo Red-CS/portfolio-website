@@ -1,4 +1,4 @@
-import styles from "@styles/VentureListObject.module.css";
+import styles from "@styles/component/VentureListObject.module.css";
 
 function VentureListObject(props) {
   return (
