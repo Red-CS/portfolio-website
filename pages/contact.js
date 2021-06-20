@@ -6,63 +6,96 @@ import Header from "@components/Header";
 import Footer from "@components/Footer";
 
 // Hooks
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 // Email Client
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
+// import sendgrid from "@sendgrid/mail";
 
 // Styles
 import styles from "@styles/pages/Contact.module.css";
 
 export default function Contact() {
-  const name = useRef("");
-  const email = useRef("");
-  const subject = useRef("");
-  const message = useRef("");
+  // const name = useRef("");
+  // const email = useRef("");
+  // const subject = useRef("");
+  // const message = useRef("");
   const [submitted, setSubmitted] = useState(false);
   const [sendSuccessful, setSendSuccessful] = useState(false);
   const [successMessage, setSuccessMessage] = useState(
     "Sorry, your message could not be sent"
   );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { register, handleSubmit } = useForm();
 
-    // Check if email is of valid format
-    if (
-      name.current === null ||
-      email.current === null ||
-      email.current.indexOf("@") === -1 ||
-      subject.current === null ||
-      message.current === null
-    ) {
-      setSuccessMessage(
-        "Invalid flieds. Please ensure everything is filled and correct"
-      );
-      setSubmitted(true);
-      return;
-    }
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID,
-        e.target,
-        process.env.NEXT_PUBLIC_USER_ID
-      )
-      .then((result) => {
-        setSubmitted(result.status === 200);
-        setSendSuccessful(result.status === 200);
-        setSuccessMessage(
-          result.status === 200
-            ? "Your message was successfully sent"
-            : "There was an error inH sending your message"
-        );
+  const onSubmit = (data) => {
+    console.log(data);
+    fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((data) => {
+        return data.json();
       })
-      .catch((e) => {
-        setSuccessMessage("There was an error in sending your message");
-        console.log(e);
-      });
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   };
+
+  // const onSubmit = (data) => {
+  //   // Check if email is of valid format
+  //   if (
+  //     name.current === null ||
+  //     email.current === null ||
+  //     email.current.indexOf("@") === -1 ||
+  //     subject.current === null ||
+  //     message.current === null
+  //   ) {
+  //     setSuccessMessage(
+  //       "Invalid flieds. Please ensure everything is filled and correct"
+  //     );
+  //     setSubmitted(true);
+  //     return;
+  //   }
+  //   emailjs
+  //     .sendForm(
+  //       process.env.NEXT_PUBLIC_SERVICE_ID,
+  //       process.env.NEXT_PUBLIC_TEMPLATE_ID,
+  //       // e.target,
+  //       data,
+  //       process.env.NEXT_PUBLIC_USER_ID
+  //     )
+  //     .then((result) => {
+  //       setSubmitted(result.status === 200);
+  //       setSendSuccessful(result.status === 200);
+  //       setSuccessMessage(
+  //         result.status === 200
+  //           ? "Your message was successfully sent"
+  //           : "There was an error inH sending your message"
+  //       );
+  //     })
+  //     .catch((e) => {
+  //       setSuccessMessage("There was an error in sending your message");
+  //       console.log(e);
+  //     });
+  // };
+
+  // const onSubmit = async (data) => {
+  //   sendgrid.setApiKey(
+  //   );
+  //   try {
+  //     await sendgrid.send({
+  //       to: "red.devcs@gmail.com",
+  //       from: data.email,
+  //       subject: data.subject,
+  //       text: data.message,
+  //     });
+  //     console.log("Message sent");
+  //   } catch (error) {
+  //     console.log("Could not send message, ", error.message);
+  //   }
+  // };
+
   return (
     <div>
       <Head>
@@ -114,7 +147,10 @@ export default function Contact() {
           <div className={styles["contact-container"]}>
             <div className={styles["left-col"]}></div>
             <div className={styles["right-col"]}>
-              <form className={styles["form"]} onSubmit={handleSubmit}>
+              <form
+                className={styles["form"]}
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <label className={styles["label"]}>Full Name</label>
                 <input
                   className={styles["input"]}
@@ -122,9 +158,10 @@ export default function Contact() {
                   name="name"
                   placeholder="Your Full Name"
                   autoComplete="off"
-                  onChange={(e) => {
-                    name.current = e.target.value;
-                  }}
+                  // onChange={(e) => {
+                  //   name.current = e.target.value;
+                  // }}
+                  {...register("name", { required: true })}
                 />
                 <div className={styles["form-group"]}>
                   <label className={styles["label"]}>Email Address</label>
@@ -134,9 +171,15 @@ export default function Contact() {
                     name="email"
                     placeholder="Your Email Address"
                     autoComplete="off"
-                    onChange={(e) => {
-                      email.current = e.target.value;
-                    }}
+                    // onChange={(e) => {
+                    //   email.current = e.target.value;
+                    // }}
+                    {...register("email", {
+                      required: true,
+                      validate: (email) => {
+                        return email.indexOf("@") >= 1;
+                      },
+                    })}
                   />
                 </div>
                 <div className={styles["form-group"]}>
@@ -147,9 +190,10 @@ export default function Contact() {
                     name="subject"
                     placeholder="The Email Subject"
                     autoComplete="off"
-                    onChange={(e) => {
-                      subject.current = e.target.value;
-                    }}
+                    // onChange={(e) => {
+                    //   subject.current = e.target.value;
+                    // }}
+                    {...register("subject", { required: true })}
                   />
                 </div>
                 <div className={styles["form-group"]}>
@@ -159,9 +203,10 @@ export default function Contact() {
                     name="message"
                     placeholder="Your Message"
                     rows="6"
-                    onChange={(e) => {
-                      message.current = e.target.value;
-                    }}
+                    // onChange={(e) => {
+                    //   message.current = e.target.value;
+                    // }}
+                    {...register("message", { required: true })}
                   />
                 </div>
                 <div className={styles["submit"]}>

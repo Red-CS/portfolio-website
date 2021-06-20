@@ -1,4 +1,4 @@
-import styles from "@styles/Menu.module.css";
+import styles from "@styles/component/Menu.module.css";
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import useOnClickOutside from "@hooks/useOnClickOutside";

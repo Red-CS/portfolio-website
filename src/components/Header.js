@@ -1,4 +1,4 @@
-import styles from "@styles/Header.module.css";
+import styles from "@styles/component/Header.module.css";
 import Navbar from "./Navbar";
 import useScrollDirection from "@hooks/useScrollDirection";
 import useScrollLength from "@hooks/useScrollLength";
