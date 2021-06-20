@@ -9,18 +9,10 @@ import Footer from "@components/Footer";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-// Email Client
-// import emailjs from "emailjs-com";
-// import sendgrid from "@sendgrid/mail";
-
 // Styles
 import styles from "@styles/pages/Contact.module.css";
 
 export default function Contact() {
-  // const name = useRef("");
-  // const email = useRef("");
-  // const subject = useRef("");
-  // const message = useRef("");
   const [submitted, setSubmitted] = useState(false);
   const [sendSuccessful, setSendSuccessful] = useState(false);
   const [successMessage, setSuccessMessage] = useState(
@@ -41,60 +33,6 @@ export default function Contact() {
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
-
-  // const onSubmit = (data) => {
-  //   // Check if email is of valid format
-  //   if (
-  //     name.current === null ||
-  //     email.current === null ||
-  //     email.current.indexOf("@") === -1 ||
-  //     subject.current === null ||
-  //     message.current === null
-  //   ) {
-  //     setSuccessMessage(
-  //       "Invalid flieds. Please ensure everything is filled and correct"
-  //     );
-  //     setSubmitted(true);
-  //     return;
-  //   }
-  //   emailjs
-  //     .sendForm(
-  //       process.env.NEXT_PUBLIC_SERVICE_ID,
-  //       process.env.NEXT_PUBLIC_TEMPLATE_ID,
-  //       // e.target,
-  //       data,
-  //       process.env.NEXT_PUBLIC_USER_ID
-  //     )
-  //     .then((result) => {
-  //       setSubmitted(result.status === 200);
-  //       setSendSuccessful(result.status === 200);
-  //       setSuccessMessage(
-  //         result.status === 200
-  //           ? "Your message was successfully sent"
-  //           : "There was an error inH sending your message"
-  //       );
-  //     })
-  //     .catch((e) => {
-  //       setSuccessMessage("There was an error in sending your message");
-  //       console.log(e);
-  //     });
-  // };
-
-  // const onSubmit = async (data) => {
-  //   sendgrid.setApiKey(
-  //   );
-  //   try {
-  //     await sendgrid.send({
-  //       to: "red.devcs@gmail.com",
-  //       from: data.email,
-  //       subject: data.subject,
-  //       text: data.message,
-  //     });
-  //     console.log("Message sent");
-  //   } catch (error) {
-  //     console.log("Could not send message, ", error.message);
-  //   }
-  // };
 
   return (
     <div>
@@ -158,9 +96,6 @@ export default function Contact() {
                   name="name"
                   placeholder="Your Full Name"
                   autoComplete="off"
-                  // onChange={(e) => {
-                  //   name.current = e.target.value;
-                  // }}
                   {...register("name", { required: true })}
                 />
                 <div className={styles["form-group"]}>
@@ -171,9 +106,6 @@ export default function Contact() {
                     name="email"
                     placeholder="Your Email Address"
                     autoComplete="off"
-                    // onChange={(e) => {
-                    //   email.current = e.target.value;
-                    // }}
                     {...register("email", {
                       required: true,
                       validate: (email) => {
@@ -190,9 +122,6 @@ export default function Contact() {
                     name="subject"
                     placeholder="The Email Subject"
                     autoComplete="off"
-                    // onChange={(e) => {
-                    //   subject.current = e.target.value;
-                    // }}
                     {...register("subject", { required: true })}
                   />
                 </div>
@@ -203,9 +132,6 @@ export default function Contact() {
                     name="message"
                     placeholder="Your Message"
                     rows="6"
-                    // onChange={(e) => {
-                    //   message.current = e.target.value;
-                    // }}
                     {...register("message", { required: true })}
                   />
                 </div>
