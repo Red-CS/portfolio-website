@@ -43,9 +43,9 @@ const Navbar = () => {
             className={styles["facedown-enter-done"]}
             style={{ transitionDelay: "300ms" }}
           >
-            <Link href="/TBA">
+            {/* <Link href="/TBA">
               <a className={styles.link}>TBA</a>
-            </Link>
+            </Link> */}
           </li>
         </ol>
       </div>
