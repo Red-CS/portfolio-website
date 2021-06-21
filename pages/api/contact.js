@@ -19,16 +19,16 @@ export default async (req, res) => {
      Message: ${JSON.parse(req.body).message}`,
     html: `
     <h1 align="center" style="font-family: Helvetica sans-serif">New Message</h1>
-    <h3 style="font-family: Helvetica sans-serif">Name: ${
+    <p style="font-family: Helvetica sans-serif"><strong>Name:</strong> ${
       JSON.parse(req.body).name
-    }</h3>
-    <h3 style="font-family: Helvetica sans-serif">Email: ${
+    }</p>
+    <p style="font-family: Helvetica sans-serif"><strong>Email:</strong> ${
       JSON.parse(req.body).email
-    }</h3>
-    <h3 style="font-family: Helvetica sans-serif">Subject: ${
+    }</p>
+    <p style="font-family: Helvetica sans-serif"><strong>Subject:</strong> ${
       JSON.parse(req.body).subject
-    }</h3>
-    <h3 style="font-family: Helvetica sans-serif">Message:</h3>
+    }</p>
+    <p style="font-family: Helvetica sans-serif"><strong>Message:</strong></p>
     <blockquote style="font-family: Helvetica sans-serif">${
       JSON.parse(req.body).message
     }</blockquote>
@@ -38,10 +38,12 @@ export default async (req, res) => {
     .send(msg)
     .then(() => {
       console.log("Email sent");
+      return res.status(200).json({ message: "Email sent" });
     })
     .catch((error) => {
       console.error(error);
+      return res
+        .status(400)
+        .json({ message: "There was an error with that request" });
     });
-  console.log(req.body);
-  return res.status(200).json({ message: "Test" });
 };

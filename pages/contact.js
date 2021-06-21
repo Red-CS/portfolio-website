@@ -6,32 +6,59 @@ import Header from "@components/Header";
 import Footer from "@components/Footer";
 
 // Hooks
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 // Styles
 import styles from "@styles/pages/Contact.module.css";
 
-export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-  const [sendSuccessful, setSendSuccessful] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(
-    "Sorry, your message could not be sent"
-  );
+export async function getStaticProps() {
+  // Preview Deployments
+  var url = `https://${process.env.VERCEL_URL}`;
+
+  // Production
+  if (process.env.VERCEL_ENV == "production") {
+    url = "https://www.redwilliams.dev";
+  }
+
+  // Development
+  else if (process.env.NODE_ENV === "development") {
+    url = "http://localhost:3000";
+  }
+
+  return { props: { url: url } };
+}
+
+export default function Contact({ url }) {
+  const initialNullState = {
+    name: false,
+    email: false,
+    subject: false,
+    message: false,
+  };
+
+  const nullFields = useRef(initialNullState);
+
+  const [hasErrors, setErrors] = useState(false);
+
+  const [serverError, setServerError] = useState(false);
+  const [sendSuccessful, setSendSuccessful] = useState();
+  const serverErrorMessage = "Sorry, your message could not be sent";
 
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    fetch("/api/contact", {
+  const onSubmit = async (data) => {
+    // console.log(data);
+    nullFields.current = initialNullState;
+    const response = await fetch(`${url}/api/contact`, {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((data) => {
-        return data.json();
+        return data.ok;
       })
-      .then((data) => console.log(data))
       .catch((error) => console.log(error));
+    setSendSuccessful(response);
   };
 
   return (
@@ -87,18 +114,70 @@ export default function Contact() {
             <div className={styles["right-col"]}>
               <form
                 className={styles["form"]}
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit((data) => {
+                  setErrors(false);
+                  var hasMissingFields = false;
+
+                  // Iterate through each field of the null fields
+                  Object.keys(nullFields.current).forEach((field) => {
+                    // If the form data is missing the field
+                    if (!data[`${field}`]) {
+                      console.log(field);
+
+                      // Set boolean flag
+                      hasMissingFields = true;
+                      // Mark field as null
+                      nullFields.current[`${field}`] = true;
+                    } else {
+                      // Mark field as not null
+                      nullFields.current[`${field}`] = false;
+                    }
+                  });
+
+                  // If there were any missing fields
+                  if (hasMissingFields) {
+                    // Set errors as true, triggering a rerender to show the asterisks
+                    setErrors(true);
+                    return; // And don't submit the form
+                  }
+                  // Object.keys(nullFields.current).forEach((field) => {
+                  //   field = false;
+                  // });
+                  onSubmit(data);
+                })}
               >
-                <label className={styles["label"]}>Full Name</label>
-                <input
-                  className={styles["input"]}
-                  type="text"
-                  name="name"
-                  placeholder="Your Full Name"
-                  autoComplete="off"
-                  {...register("name", { required: true })}
-                />
                 <div className={styles["form-group"]}>
+                  <p
+                    className={styles["asterisk"]}
+                    style={{
+                      visibility: nullFields.current.name
+                        ? "visible"
+                        : "hidden",
+                    }}
+                  >
+                    *
+                  </p>
+                  <label className={styles["label"]}>Full Name</label>
+                  <input
+                    className={styles["input"]}
+                    type="text"
+                    name="name"
+                    placeholder="Your Full Name"
+                    autoComplete="off"
+                    {...register("name")}
+                  />
+                </div>
+                <div className={styles["form-group"]}>
+                  <p
+                    className={styles["asterisk"]}
+                    style={{
+                      visibility: nullFields.current.email
+                        ? "visible"
+                        : "hidden",
+                    }}
+                  >
+                    *
+                  </p>
                   <label className={styles["label"]}>Email Address</label>
                   <input
                     className={styles["input"]}
@@ -107,7 +186,6 @@ export default function Contact() {
                     placeholder="Your Email Address"
                     autoComplete="off"
                     {...register("email", {
-                      required: true,
                       validate: (email) => {
                         return email.indexOf("@") >= 1;
                       },
@@ -115,6 +193,16 @@ export default function Contact() {
                   />
                 </div>
                 <div className={styles["form-group"]}>
+                  <p
+                    className={styles["asterisk"]}
+                    style={{
+                      visibility: nullFields.current.subject
+                        ? "visible"
+                        : "hidden",
+                    }}
+                  >
+                    *
+                  </p>
                   <label className={styles["label"]}>Subject</label>
                   <input
                     className={styles["input"]}
@@ -122,17 +210,27 @@ export default function Contact() {
                     name="subject"
                     placeholder="The Email Subject"
                     autoComplete="off"
-                    {...register("subject", { required: true })}
+                    {...register("subject")}
                   />
                 </div>
                 <div className={styles["form-group"]}>
+                  <p
+                    className={styles["asterisk"]}
+                    style={{
+                      visibility: nullFields.current.message
+                        ? "visible"
+                        : "hidden",
+                    }}
+                  >
+                    *
+                  </p>
                   <label className={styles["label"]}>Message</label>
                   <textarea
                     className={styles[("input", "textarea")]}
                     name="message"
                     placeholder="Your Message"
                     rows="6"
-                    {...register("message", { required: true })}
+                    {...register("message")}
                   />
                 </div>
                 <div className={styles["submit"]}>
@@ -142,13 +240,16 @@ export default function Contact() {
                     value="Submit"
                     disabled={sendSuccessful}
                   >
-                    Send
+                    {sendSuccessful ? "Sent" : "Send"}
                   </button>
                   <div
                     className={styles["confirm-message"]}
-                    style={{ visibility: submitted ? "visible" : "hidden" }}
+                    style={{
+                      visibility:
+                        sendSuccessful !== false ? "hidden" : "visible",
+                    }}
                   >
-                    <p>{successMessage}</p>
+                    <p>{serverErrorMessage}</p>
                   </div>
                 </div>
               </form>

@@ -47,6 +47,18 @@
   padding: 1rem 0;
 }
 
+.form-group {
+  position: relative;
+}
+
+.asterisk {
+  position: absolute;
+  top: -16px;
+  left: -12px;
+  font-family: Proxima-Nova;
+  color: #d81313;
+}
+
 .textarea {
   resize: none;
 }
