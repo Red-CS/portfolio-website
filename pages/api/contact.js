@@ -37,7 +37,6 @@ export default async (req, res) => {
   sendgrid
     .send(msg)
     .then(() => {
-      console.log("Email sent");
       return res.status(200).json({ message: "Email sent" });
     })
     .catch((error) => {
