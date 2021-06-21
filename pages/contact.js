@@ -29,6 +29,11 @@ export async function getStaticProps() {
   return { props: { url: url } };
 }
 
+/**
+ * Sets the color for the form button
+ * @param {boolean} success The current state of the button (true, false, or undefined)
+ * @returns Green if the form was submitted successfully, Red if not, and it's default state, white
+ */
 function getButtonColor(success) {
   if (success) {
     return "#7eff7e";
@@ -37,34 +42,51 @@ function getButtonColor(success) {
   }
   return "#f4f4f4";
 }
+
+// Message to show when there is a server error
 const serverErrorMessage = "Sorry, your message could not be sent";
 
-export default function Contact({ url }) {
-  const initialNullState = {
-    name: false,
-    email: false,
-    subject: false,
-    message: false,
-  };
+// Initial state of the Ref object
+const initialNullState = {
+  name: false,
+  email: false,
+  subject: false,
+  message: false,
+};
 
+export default function Contact({ url }) {
+  // Is used to determine the state of the asterisks between renders
   const nullFields = useRef(initialNullState);
 
+  // Updates the state when there are null fields, showing the asterisks
   const [hasErrors, setErrors] = useState(false);
 
+  // Sets the success of the submission. Undefined by default
   const [sendSuccessful, setSendSuccessful] = useState();
 
+  // Form hook
   const { register, handleSubmit } = useForm();
 
+  /**
+   * Submits the form
+   * @param {object} data Form data
+   */
   const onSubmit = async (data) => {
+    // Reset the null state. On next render, any asterisks will be removed
     nullFields.current = initialNullState;
+
+    // Send the email
     const response = await fetch(`${url}/api/contact`, {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((data) => {
+        // Return the status of the response, message isn't really needed
         return data.ok;
       })
       .catch((error) => console.log(error));
+
+    // Sets the success of the request
     setSendSuccessful(response);
   };
 
