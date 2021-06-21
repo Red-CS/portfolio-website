@@ -177,23 +177,24 @@ export default function Index({ projectData }) {
               <VentureListObject
                 ventureName="Programming"
                 listItem1="Low Level Programming"
-                listItem2="Machine Learning"
-                listItem3='Coding "Best Practices"'
+                listItem2="Game Development"
+                listItem3="Open Source and Project Maintenance"
+                listItem4="Complex Algorithms"
               />
 
               <VentureListObject
                 ventureName="Software Development"
-                listItem1="Javascript Frameworks"
-                listItem2="Typescript"
+                listItem1="JS Frameworks (Vue/Nuxt, Electron)"
+                listItem2="Developing in Typescript"
                 listItem3="UX/UI Design and Prototyping"
-                listItem4="SVG Animation"
+                listItem4="Mobile Development"
               />
 
               <VentureListObject
                 ventureName="Electronics"
                 listItem1="Microcontrollers (Arduino)"
                 listItem2="Circuitry"
-                listItem3="Raspberry Pi"
+                listItem3="Raspberry Pi Integrations"
               />
             </div>
             <span className="section-tag">&lt;/ul&gt;</span>
