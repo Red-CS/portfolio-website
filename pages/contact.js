@@ -29,6 +29,16 @@ export async function getStaticProps() {
   return { props: { url: url } };
 }
 
+function getButtonColor(success) {
+  if (success) {
+    return "#7eff7e";
+  } else if (success === false) {
+    return "#ff7e7e";
+  }
+  return "#f4f4f4";
+}
+const serverErrorMessage = "Sorry, your message could not be sent";
+
 export default function Contact({ url }) {
   const initialNullState = {
     name: false,
@@ -41,14 +51,11 @@ export default function Contact({ url }) {
 
   const [hasErrors, setErrors] = useState(false);
 
-  const [serverError, setServerError] = useState(false);
   const [sendSuccessful, setSendSuccessful] = useState();
-  const serverErrorMessage = "Sorry, your message could not be sent";
 
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(data);
     nullFields.current = initialNullState;
     const response = await fetch(`${url}/api/contact`, {
       method: "POST",
@@ -115,15 +122,13 @@ export default function Contact({ url }) {
               <form
                 className={styles["form"]}
                 onSubmit={handleSubmit((data) => {
-                  setErrors(false);
+                  if (hasErrors) setErrors(false);
                   var hasMissingFields = false;
 
                   // Iterate through each field of the null fields
                   Object.keys(nullFields.current).forEach((field) => {
                     // If the form data is missing the field
                     if (!data[`${field}`]) {
-                      console.log(field);
-
                       // Set boolean flag
                       hasMissingFields = true;
                       // Mark field as null
@@ -140,9 +145,6 @@ export default function Contact({ url }) {
                     setErrors(true);
                     return; // And don't submit the form
                   }
-                  // Object.keys(nullFields.current).forEach((field) => {
-                  //   field = false;
-                  // });
                   onSubmit(data);
                 })}
               >
@@ -236,6 +238,7 @@ export default function Contact({ url }) {
                 <div className={styles["submit"]}>
                   <button
                     className={styles["button"]}
+                    style={{ color: getButtonColor(sendSuccessful) }}
                     type="submit"
                     value="Submit"
                     disabled={sendSuccessful}
