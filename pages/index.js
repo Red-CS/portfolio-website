@@ -108,25 +108,21 @@ export default function Index({ projectData }) {
             <p>
               <br />
               <br />
-              Hey there! I am a first-year student at{" "}
+              Hey there! I am a second-year student at{" "}
               <a className={"link-hover"} href="https://www.vt.edu/">
                 Virginia Tech
               </a>{" "}
-              studying under the college of General Engineering. I have been
-              interested in computers all my life, and started learning computer
-              programming in high school. Actually, I wrote some of my first
-              programs on my Ti-84 Plus CE calculator to help me with some of my
-              schoolwork! My first real language was Java, but since then I have
-              worked with Python, Javascript, HTML and CSS. I hope to learn more
-              about computer science and professionalism in technology.
+              studying Computer Science! I have been interested in computers for
+              as long as I can remember. I started off with Object Oriented
+              Programming in Java (that is, if you don't count TI-Basic as a
+              language), but have since then worked with multiple other
+              technologies and frameworks. I strive to learn more about computer
+              science and professionalism in technology, one line at a time.
               <br />
               <br />
               When I'm not coding or studying, I love to longboard! In
-              particular, longboard dancing and freestyle. I also love to
-              practice quads! I was an avid member of both Marching Band and
-              Indoor Drumline throughout my percussion career, where I served as
-              Tenor Section Leader my during final season. When I'm not doing
-              any of that, I enjoy playing videogames as a pastime.
+              particular, longboard dancing and freestyle. When I'm not doing
+              any of that, I enjoy playing videogames and watching anime.
               <br />
               <br />
             </p>
