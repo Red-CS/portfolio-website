@@ -69,6 +69,20 @@ export default function Footer() {
             <li>
               <a
                 target="_blank"
+                href="https://open.spotify.com/user/jpw918?si=9ecdb2deaba24c20"
+                rel="noreferrer"
+              >
+                <Image
+                  src="/img/fa_spotify.svg"
+                  width="40"
+                  height="40"
+                  className={styles[("fa", "fa-spotify")]}
+                ></Image>
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
                 href="mailto:red.devcs@gmail.com"
                 rel="noreferrer"
               >
